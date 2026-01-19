@@ -21,16 +21,15 @@
       <% if active_assessments.empty? %>
         <p class="small-text">No active assessments yet.</p>
       <% else %>
-        <div class="stack">
+        <div class="grid-two">
           <% active_assessments.each do |assessment| %>
             <div class="card">
-              <div class="inline-meta">
-                <strong><%= assessment.company_name %></strong>
-                <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
+              <div class="company-header">
+                <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
-              <div class="inline-meta">
+              <div class="company-details">
+                <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
-                <span>Invite link: <%= invite_link(assessment) %></span>
               </div>
               <div class="card-footer">
                 <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
@@ -47,16 +46,15 @@
       <% if completed_assessments.empty? %>
         <p class="small-text">No completed assessments yet.</p>
       <% else %>
-        <div class="stack">
+        <div class="grid-two">
           <% completed_assessments.each do |assessment| %>
             <div class="card">
-              <div class="inline-meta">
-                <strong><%= assessment.company_name %></strong>
-                <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
+              <div class="company-header">
+                <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
-              <div class="inline-meta">
+              <div class="company-details">
+                <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
-                <span>Invite link: <%= invite_link(assessment) %></span>
               </div>
               <div class="card-footer">
                 <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
@@ -71,16 +69,15 @@
       <% if cancelled_assessments.empty? %>
         <p class="small-text">No cancelled assessments yet.</p>
       <% else %>
-        <div class="stack">
+        <div class="grid-two">
           <% cancelled_assessments.each do |assessment| %>
             <div class="card">
-              <div class="inline-meta">
-                <strong><%= assessment.company_name %></strong>
-                <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
+              <div class="company-header">
+                <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
-              <div class="inline-meta">
+              <div class="company-details">
+                <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
-                <span>Invite link: <%= invite_link(assessment) %></span>
               </div>
             </div>
           <% end %>

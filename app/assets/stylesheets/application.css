@@ -409,6 +409,22 @@ select {
   color: var(--muted-foreground);
 }
 
+.company-name {
+  font-size: 16px;
+  color: #1f2933;
+}
+
+.company-header {
+  margin-bottom: 8px;
+}
+
+.company-details {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+
 .pillar-chart {
   display: grid;
   gap: 18px;
