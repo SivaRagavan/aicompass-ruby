@@ -28,6 +28,21 @@
     <% end %>
   </div>
 
+  <h2>Pillar Snapshot</h2>
+  <div class="pillar-chart">
+    <% @summary[:pillar_scores].each do |pillar| %>
+      <div class="pillar-bar">
+        <div class="pillar-label">
+          <span><%= pillar[:pillar_name] %></span>
+          <strong><%= format("%.1f", pillar[:score]) %></strong>
+        </div>
+        <div class="pillar-track">
+          <span style="width: <%= pillar[:score].to_f.round %>%"></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <h2>Metric Scores</h2>
   <table class="table">
     <thead>
