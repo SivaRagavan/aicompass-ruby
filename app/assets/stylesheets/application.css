@@ -146,6 +146,10 @@ a {
   box-shadow: none;
 }
 
+.button.is-copied {
+  color: #1f2933;
+}
+
 .button.secondary {
   background: var(--accent);
   color: var(--primary);
@@ -332,6 +336,44 @@ select {
   display: grid;
   gap: 24px;
   grid-template-columns: 240px 1fr;
+}
+
+.assessment-tabs {
+  display: grid;
+  gap: 20px;
+}
+
+.tab-buttons {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  background: #efe6d8;
+  align-self: flex-start;
+}
+
+.tab-button {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #fffaf3;
+  color: var(--primary);
+  box-shadow: 0 10px 20px rgba(31, 41, 51, 0.08);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
 }
 
 .stack {

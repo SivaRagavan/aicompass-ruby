@@ -9,50 +9,92 @@
     </div>
   </div>
 
-  <h2>Active assessments</h2>
-  <% active_assessments = @assessments.reject { |assessment| assessment.status == "cancelled" } %>
-  <% cancelled_assessments = @assessments.select { |assessment| assessment.status == "cancelled" } %>
-  <% if active_assessments.empty? %>
-    <p class="small-text">No active assessments yet.</p>
-  <% else %>
-    <div class="stack">
-      <% active_assessments.each do |assessment| %>
-        <div class="card">
-          <div class="inline-meta">
-            <strong><%= assessment.company_name %></strong>
-            <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
-            <span class="status-pill active">Active</span>
-          </div>
-          <div class="inline-meta">
-            <span><%= assessment_progress_label(assessment) %></span>
-            <span>Invite link: <%= invite_link(assessment) %></span>
-          </div>
-          <div class="card-footer">
-            <%= link_to "Start", invite_path(assessment.invite_token), class: "button outline small" %>
-            <%= link_to "Copy invite link", invite_link(assessment), class: "button ghost small" %>
-            <%= button_to "Cancel", assessment_path(assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false } } %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <% active_assessments = @assessments.select { |assessment| assessment.status == "active" && !assessment.expired? } %>
+  <% completed_assessments = @assessments.select { |assessment| assessment.status == "completed" } %>
+  <% cancelled_assessments = @assessments.select { |assessment| assessment.status == "cancelled" || assessment.expired? } %>
 
-  <% if cancelled_assessments.any? %>
-    <h2>Cancelled assessments</h2>
-    <div class="stack">
-      <% cancelled_assessments.each do |assessment| %>
-        <div class="card">
-          <div class="inline-meta">
-            <strong><%= assessment.company_name %></strong>
-            <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
-            <span class="status-pill cancelled">Cancelled</span>
-          </div>
-          <div class="inline-meta">
-            <span><%= assessment_progress_label(assessment) %></span>
-            <span>Invite link: <%= invite_link(assessment) %></span>
-          </div>
+  <div class="assessment-tabs" data-tab-group>
+    <div class="tab-buttons">
+      <button class="tab-button active" type="button" data-tab-button="active">Active</button>
+      <button class="tab-button" type="button" data-tab-button="completed">Completed</button>
+      <button class="tab-button" type="button" data-tab-button="cancelled">Cancelled</button>
+    </div>
+
+    <section class="tab-panel active" data-tab-panel="active">
+      <h2>Active assessments</h2>
+      <% if active_assessments.empty? %>
+        <p class="small-text">No active assessments yet.</p>
+      <% else %>
+        <div class="stack">
+          <% active_assessments.each do |assessment| %>
+            <div class="card">
+              <div class="inline-meta">
+                <strong><%= assessment.company_name %></strong>
+                <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
+                <span class="status-pill active">Active</span>
+              </div>
+              <div class="inline-meta">
+                <span><%= assessment_progress_label(assessment) %></span>
+                <span>Invite link: <%= invite_link(assessment) %></span>
+              </div>
+              <div class="card-footer">
+                <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
+                <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy active link</button>
+                <%= button_to "Cancel", assessment_path(assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false } } %>
+              </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
-  <% end %>
+    </section>
+
+    <section class="tab-panel" data-tab-panel="completed">
+      <h2>Completed assessments</h2>
+      <% if completed_assessments.empty? %>
+        <p class="small-text">No completed assessments yet.</p>
+      <% else %>
+        <div class="stack">
+          <% completed_assessments.each do |assessment| %>
+            <div class="card">
+              <div class="inline-meta">
+                <strong><%= assessment.company_name %></strong>
+                <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
+                <span class="status-pill active">Completed</span>
+              </div>
+              <div class="inline-meta">
+                <span><%= assessment_progress_label(assessment) %></span>
+                <span>Invite link: <%= invite_link(assessment) %></span>
+              </div>
+              <div class="card-footer">
+                <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+
+    <section class="tab-panel" data-tab-panel="cancelled">
+      <h2>Cancelled assessments</h2>
+      <% if cancelled_assessments.empty? %>
+        <p class="small-text">No cancelled assessments yet.</p>
+      <% else %>
+        <div class="stack">
+          <% cancelled_assessments.each do |assessment| %>
+            <div class="card">
+              <div class="inline-meta">
+                <strong><%= assessment.company_name %></strong>
+                <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
+                <span class="status-pill cancelled">Cancelled</span>
+              </div>
+              <div class="inline-meta">
+                <span><%= assessment_progress_label(assessment) %></span>
+                <span>Invite link: <%= invite_link(assessment) %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </div>
 </div>

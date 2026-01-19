@@ -16,6 +16,41 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag :app %>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-tab-group]").forEach((group) => {
+          const buttons = group.querySelectorAll("[data-tab-button]");
+          const panels = group.querySelectorAll("[data-tab-panel]");
+
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const target = button.dataset.tabButton;
+              buttons.forEach((item) => item.classList.toggle("active", item === button));
+              panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.tabPanel === target));
+            });
+          });
+        });
+
+        document.querySelectorAll("[data-copy-link]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            const link = button.dataset.copyLink;
+            if (!link) return;
+            try {
+              await navigator.clipboard.writeText(link);
+              const originalText = button.textContent;
+              button.textContent = "Copied!";
+              button.classList.add("is-copied");
+              setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove("is-copied");
+              }, 1800);
+            } catch (error) {
+              window.prompt("Copy the link:", link);
+            }
+          });
+        });
+      });
+    </script>
   </head>
 
   <body>
