@@ -21,7 +21,6 @@
     </div>
 
     <section class="tab-panel active" data-tab-panel="active">
-      <h2>Active assessments</h2>
       <% if active_assessments.empty? %>
         <p class="small-text">No active assessments yet.</p>
       <% else %>
@@ -49,7 +48,6 @@
     </section>
 
     <section class="tab-panel" data-tab-panel="completed">
-      <h2>Completed assessments</h2>
       <% if completed_assessments.empty? %>
         <p class="small-text">No completed assessments yet.</p>
       <% else %>
@@ -75,7 +73,6 @@
     </section>
 
     <section class="tab-panel" data-tab-panel="cancelled">
-      <h2>Cancelled assessments</h2>
       <% if cancelled_assessments.empty? %>
         <p class="small-text">No cancelled assessments yet.</p>
       <% else %>
