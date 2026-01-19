@@ -376,6 +376,18 @@ select {
   display: block;
 }
 
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.page-header .card-subtitle {
+  margin-bottom: 0;
+}
+
 .stack {
   display: flex;
   flex-direction: column;

@@ -1,12 +1,12 @@
 <div class="stack">
-  <div>
-    <h1>Company Assessments</h1>
-    <p class="card-subtitle">
-      Track AI maturity across company assessments and invite executives to respond.
-    </p>
-    <div class="card-footer">
-      <%= link_to "New assessment", new_assessment_path, class: "button" %>
+  <div class="page-header">
+    <div>
+      <h1>Assessments</h1>
+      <p class="card-subtitle">
+        Track AI maturity across company assessments and invite executives to respond.
+      </p>
     </div>
+    <%= link_to "New assessment", new_assessment_path, class: "button" %>
   </div>
 
   <% active_assessments = @assessments.select { |assessment| assessment.status == "active" && !assessment.expired? } %>
