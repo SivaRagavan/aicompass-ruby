@@ -28,8 +28,8 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 8001.
-port ENV.fetch("PORT", 8001)
+# Specifies the `port` that Puma will listen on to receive requests; default is 8004.
+port ENV.fetch("PORT", 8004)
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
