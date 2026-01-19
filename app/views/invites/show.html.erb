@@ -1,0 +1,30 @@
+<div class="card" style="max-width: 640px;">
+  <h1>Executive profile</h1>
+  <p class="card-subtitle">
+    Confirm your details before completing the assessment for the PE sponsor.
+  </p>
+
+  <%= form_with url: invite_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
+    <div class="input-group">
+      <%= label_tag :company_name, "Company name" %>
+      <%= text_field_tag :company_name, @assessment.company_name %>
+    </div>
+    <div class="grid-two">
+      <div class="input-group">
+        <%= label_tag :exec_name, "Your name" %>
+        <%= text_field_tag :exec_name, @profile["name"] %>
+      </div>
+      <div class="input-group">
+        <%= label_tag :exec_title, "Title" %>
+        <%= text_field_tag :exec_title, @profile["title"] %>
+      </div>
+    </div>
+    <div class="input-group">
+      <%= label_tag :exec_email, "Work email" %>
+      <%= email_field_tag :exec_email, @profile["email"] %>
+    </div>
+    <div class="card-footer">
+      <%= submit_tag "Continue to assessment", class: "button" %>
+    </div>
+  <% end %>
+</div>

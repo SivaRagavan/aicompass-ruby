@@ -1,0 +1,24 @@
+<div class="card">
+  <h1>Qualification</h1>
+  <p class="card-subtitle">
+    Answer a few questions to pre-select the modules that matter most.
+  </p>
+
+  <%= form_with url: qualify_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
+    <% @questions.each do |question| %>
+      <div class="input-group">
+        <%= label_tag "answers_#{question[:id]}", question[:prompt] %>
+        <% if question[:helper].present? %>
+          <p class="small-text"><%= question[:helper] %></p>
+        <% end %>
+        <%= select_tag "answers[#{question[:id]}]", options_for_select(question[:options].map { |opt| [opt[:label], opt[:value]] }, @assessment.responses.dig("qualification", question[:id])), include_blank: "Select an answer" %>
+      </div>
+    <% end %>
+
+    <div class="card-footer">
+      <%= submit_tag "Continue", class: "button" %>
+      <%= link_to "Back", company_path(@assessment.invite_token), class: "button secondary" %>
+      <%= link_to "Reset Assessment", root_path, class: "button outline" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<div class="card" style="max-width: 480px;">
+  <h1>Create account</h1>
+  <p class="card-subtitle">Create a PE firm account to manage assessments.</p>
+
+  <%= form_with url: register_path, method: :post, class: "form-grid" do %>
+    <div class="input-group">
+      <%= label_tag :email, "Email" %>
+      <%= email_field_tag :email, params[:email], placeholder: "you@firm.com" %>
+    </div>
+    <div class="input-group">
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password, nil, placeholder: "••••••••" %>
+    </div>
+    <div class="card-footer">
+      <%= submit_tag "Create account", class: "button" %>
+      <%= link_to "Already have an account?", signin_path, class: "button ghost" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,64 @@
+<div class="assessment-grid">
+  <aside class="metric-nav">
+    <div class="inline-meta" style="justify-content: space-between;">
+      <span>Progress</span>
+      <%= link_to "Reset", root_path, class: "button outline small" %>
+    </div>
+    <div class="stack">
+      <strong><%= selected_metric_index + 1 %> / <%= @selected_metrics.length %></strong>
+      <div class="progress-bar">
+        <% progress = (((selected_metric_index + 1).to_f / @selected_metrics.length) * 100).round %>
+        <span style="width: <%= progress %>%"></span>
+      </div>
+    </div>
+    <div class="stack" style="margin-top: 20px;">
+      <% @selected_metrics.map { |entry| entry[:pillar] }.uniq.each do |pillar| %>
+        <div class="stack">
+          <strong><%= pillar[:name] %></strong>
+          <% pillar[:metrics].each do |metric| %>
+            <% active = metric[:id] == @current_metric[:metric][:id] %>
+            <% completed = @assessment.scores.any? { |score| score["metric_id"] == metric[:id] && score["completed"] } %>
+            <div class="metric-row <%= "active" if active %>">
+              <span><%= metric[:name] %></span>
+              <span><%= completed ? "✓" : "" %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+
+  <div class="card">
+    <h1><%= @current_metric[:pillar][:name] %></h1>
+    <p class="card-subtitle"><%= @current_metric[:metric][:name] %></p>
+    <p class="small-text"><%= @current_metric[:metric][:description] %></p>
+
+    <%= form_with url: assessment_update_path(@assessment.invite_token, @current_metric[:pillar][:id], @current_metric[:metric][:id]), method: :patch, class: "form-grid" do %>
+      <% questions = @current_metric[:metric][:questions] %>
+      <% labels = @current_metric[:metric][:labels] %>
+      <% saved_score = @assessment.scores.find { |score| score["metric_id"] == @current_metric[:metric][:id] } %>
+      <% responses = saved_score ? saved_score["responses"] : Array.new(questions.length, 1) %>
+      <% questions.each_with_index do |question, index| %>
+        <div class="input-group">
+          <label><%= question[:prompt] %></label>
+          <input class="range-input" type="range" min="1" max="5" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
+          <div class="slider-labels">
+            <% labels.each do |label| %>
+              <span><%= label %></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="card-footer">
+        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "View Results" : "Next Metric", class: "button") %>
+        <% if selected_metric_index.positive? %>
+          <% previous = @selected_metrics[selected_metric_index - 1] %>
+          <%= link_to "Back", assessment_step_path(@assessment.invite_token, previous[:pillar][:id], previous[:metric][:id]), class: "button secondary" %>
+        <% else %>
+          <%= link_to "Back", modules_path(@assessment.invite_token), class: "button secondary" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

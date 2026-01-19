@@ -1,0 +1,31 @@
+<div class="card">
+  <h1>Modules</h1>
+  <p class="card-subtitle">Confirm the modules to include in this assessment.</p>
+
+  <%= form_with url: modules_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
+    <% @pillars.each do |pillar| %>
+      <% checked = @assessment.selections.any? { |item| item["pillar_id"] == pillar[:id] && item["selected"] } %>
+      <div class="card" style="box-shadow: none;">
+        <div class="inline-meta">
+          <strong><%= pillar[:name] %></strong>
+          <span>
+            <%= pillar[:metrics].length %> metrics ·
+            <%= pillar[:metrics].sum { |metric| metric[:questions].length } %> questions
+          </span>
+        </div>
+        <div class="card-footer">
+          <label>
+            <%= check_box_tag "pillars[]", pillar[:id], checked %>
+            Include module
+          </label>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="card-footer">
+      <%= submit_tag "Start Modules", class: "button" %>
+      <%= link_to "Back", qualify_path(@assessment.invite_token), class: "button secondary" %>
+      <%= link_to "Reset Assessment", root_path, class: "button outline" %>
+    </div>
+  <% end %>
+</div>

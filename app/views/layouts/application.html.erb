@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "AI Compass Ruby" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="AI Compass Ruby">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app %>
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <header class="top-nav">
+        <div class="container nav-content">
+          <%= link_to "AI Compass", (current_user ? dashboard_path : root_path), class: "logo" %>
+          <div class="nav-actions">
+            <% if current_user %>
+              <%= link_to "Dashboard", dashboard_path, class: "button ghost" %>
+              <%= button_to "Sign out", signout_path, method: :delete, class: "button outline", form: { data: { turbo: false } } %>
+            <% else %>
+              <%= link_to "Sign in", signin_path, class: "button" %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+
+      <main class="container main-content">
+        <% if notice %>
+          <div class="alert success"><%= notice %></div>
+        <% end %>
+        <% if alert %>
+          <div class="alert error"><%= alert %></div>
+        <% end %>
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

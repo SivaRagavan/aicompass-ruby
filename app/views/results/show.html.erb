@@ -1,0 +1,57 @@
+<div class="card">
+  <h1>Assessment Results</h1>
+  <p class="card-subtitle">Summary for <%= @assessment.company_name.presence || "your company" %>.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div style="font-size: 28px; font-weight: 700;"><%= format("%.1f", @summary[:composite_score]) %></div>
+      <div class="small-text">Composite Score</div>
+    </div>
+    <div class="stat-card">
+      <span class="badge"><%= @summary[:maturity_band] %></span>
+      <div class="small-text">Maturity Band</div>
+    </div>
+  </div>
+
+  <h2>Pillar Scores</h2>
+  <div class="stack">
+    <% @summary[:pillar_scores].each do |pillar| %>
+      <div>
+        <div class="inline-meta" style="justify-content: space-between;">
+          <strong><%= pillar[:pillar_name] %></strong>
+          <span><%= format("%.1f", pillar[:score]) %></span>
+        </div>
+        <div class="progress-bar">
+          <span style="width: <%= pillar[:score].to_f.round %>%"></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <h2>Metric Scores</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Score</th>
+        <th>Question Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @assessment.scores.each do |score| %>
+        <% pillar = BenchmarkData.pillar_by_id(score["pillar_id"]) %>
+        <% metric = pillar&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
+        <tr>
+          <td><%= metric ? metric[:name] : score["metric_id"] %></td>
+          <td><%= format("%.1f", score["score"].to_f) %></td>
+          <td><%= metric ? metric[:questions].length : score["responses"].length %> questions</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="card-footer">
+    <%= link_to "Back to Modules", modules_path(@assessment.invite_token), class: "button secondary" %>
+    <%= link_to "Reset Assessment", root_path, class: "button outline" %>
+  </div>
+</div>

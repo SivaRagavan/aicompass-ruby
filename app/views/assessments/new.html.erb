@@ -1,0 +1,34 @@
+<div class="card">
+  <h1>New company assessment</h1>
+  <p class="small-text">Start it yourself or invite someone else to take it.</p>
+
+  <%= form_with url: assessments_path, method: :post, class: "form-grid" do %>
+    <div class="input-group">
+      <%= label_tag :company_name, "Company Name" %>
+      <%= text_field_tag :company_name, @assessment.company_name, placeholder: "Northbridge Manufacturing" %>
+    </div>
+    <div class="grid-two">
+      <div class="input-group">
+        <%= label_tag :company_industry, "Industry" %>
+        <%= select_tag :company_industry, options_for_select(IndustryData::LIST, @assessment.company_industry), include_blank: "Select an industry" %>
+      </div>
+      <div class="input-group">
+        <%= label_tag :company_size, "Company Size" %>
+        <%= select_tag :company_size, options_for_select([
+          ["Startup (1-100)", "startup"],
+          ["Mid-market (100-1000)", "mid"],
+          ["Enterprise (1000+)", "enterprise"]
+        ], @assessment.company_size), include_blank: "Select" %>
+      </div>
+    </div>
+    <div class="input-group">
+      <%= label_tag :invite_days, "Invite expires in (days)" %>
+      <%= number_field_tag :invite_days, params[:invite_days] || 30, min: 1 %>
+    </div>
+    <div class="card-footer">
+      <%= button_tag "Start assessment", name: "start_now", value: "1", class: "button start" %>
+      <%= submit_tag "Invite someone to take assessment", class: "button invite" %>
+      <%= link_to "Back to dashboard", dashboard_path, class: "button ghost" %>
+    </div>
+  <% end %>
+</div>
