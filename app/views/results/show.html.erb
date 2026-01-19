@@ -13,21 +13,6 @@
     </div>
   </div>
 
-  <h2>Pillar Scores</h2>
-  <div class="stack">
-    <% @summary[:pillar_scores].each do |pillar| %>
-      <div>
-        <div class="inline-meta" style="justify-content: space-between;">
-          <strong><%= pillar[:pillar_name] %></strong>
-          <span><%= format("%.1f", pillar[:score]) %></span>
-        </div>
-        <div class="progress-bar">
-          <span style="width: <%= pillar[:score].to_f.round %>%"></span>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
   <h2>Pillar Snapshot</h2>
   <div class="pillar-chart">
     <% @summary[:pillar_scores].each do |pillar| %>
@@ -67,6 +52,5 @@
 
   <div class="card-footer">
     <%= link_to "Back to Modules", modules_path(@assessment.invite_token), class: "button secondary" %>
-    <%= link_to "Reset Assessment", root_path, class: "button outline" %>
   </div>
 </div>
