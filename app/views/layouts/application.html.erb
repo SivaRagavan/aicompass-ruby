@@ -23,7 +23,7 @@
       <header class="top-nav">
         <div class="container nav-content">
           <%= link_to (current_user ? dashboard_path : root_path), class: "logo" do %>
-            <%= image_tag "icon.png", alt: "Compass", class: "logo-mark" %>
+            <%= image_tag "/icon.png", alt: "Compass", class: "logo-mark" %>
             <span>AI Compass</span>
           <% end %>
           <div class="nav-actions">
