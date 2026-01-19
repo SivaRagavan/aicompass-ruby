@@ -27,7 +27,6 @@
               <div class="inline-meta">
                 <strong><%= assessment.company_name %></strong>
                 <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
-                <span class="status-pill active">Active</span>
               </div>
               <div class="inline-meta">
                 <span><%= assessment_progress_label(assessment) %></span>
@@ -54,7 +53,6 @@
               <div class="inline-meta">
                 <strong><%= assessment.company_name %></strong>
                 <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
-                <span class="status-pill active">Completed</span>
               </div>
               <div class="inline-meta">
                 <span><%= assessment_progress_label(assessment) %></span>
@@ -79,7 +77,6 @@
               <div class="inline-meta">
                 <strong><%= assessment.company_name %></strong>
                 <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
-                <span class="status-pill cancelled">Cancelled</span>
               </div>
               <div class="inline-meta">
                 <span><%= assessment_progress_label(assessment) %></span>
