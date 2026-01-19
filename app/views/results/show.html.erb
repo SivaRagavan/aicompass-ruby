@@ -16,39 +16,29 @@
   <h2>Pillar Snapshot</h2>
   <div class="pillar-chart">
     <% @summary[:pillar_scores].each do |pillar| %>
-      <div class="pillar-bar">
-        <div class="pillar-label">
+      <% pillar_scores = @assessment.scores.select { |score| score["pillar_id"] == pillar[:pillar_id] } %>
+      <div class="pillar-bar" data-pillar>
+        <button class="pillar-label" type="button" data-pillar-toggle>
           <span><%= pillar[:pillar_name] %></span>
           <strong><%= format("%.1f", pillar[:score]) %></strong>
-        </div>
+        </button>
         <div class="pillar-track">
           <span style="width: <%= pillar[:score].to_f.round %>%"></span>
+        </div>
+        <div class="pillar-metrics" data-pillar-metrics>
+          <% pillar_scores.each do |score| %>
+            <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
+            <div class="pillar-metric-row">
+              <span><%= metric ? metric[:name] : score["metric_id"] %></span>
+              <span><%= format("%.1f", score["score"].to_f) %></span>
+              <span><%= metric ? metric[:questions].length : score["responses"].length %> questions</span>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
   </div>
 
-  <h2>Metric Scores</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Metric</th>
-        <th>Score</th>
-        <th>Question Count</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @assessment.scores.each do |score| %>
-        <% pillar = BenchmarkData.pillar_by_id(score["pillar_id"]) %>
-        <% metric = pillar&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
-        <tr>
-          <td><%= metric ? metric[:name] : score["metric_id"] %></td>
-          <td><%= format("%.1f", score["score"].to_f) %></td>
-          <td><%= metric ? metric[:questions].length : score["responses"].length %> questions</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 
   <div class="card-footer">
     <%= link_to "Back to Modules", modules_path(@assessment.invite_token), class: "button secondary" %>

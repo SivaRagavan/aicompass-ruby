@@ -49,6 +49,14 @@
             }
           });
         });
+
+        document.querySelectorAll("[data-pillar]").forEach((pill) => {
+          const toggle = pill.querySelector("[data-pillar-toggle]");
+          if (!toggle) return;
+          toggle.addEventListener("click", () => {
+            pill.classList.toggle("is-open");
+          });
+        });
       });
     </script>
   </head>
