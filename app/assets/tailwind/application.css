@@ -1,4 +1,20 @@
+@import "tailwindcss";
 
+:root {
+  color-scheme: light;
+  --background: #fdfaf4;
+  --foreground: #1f2933;
+  --muted: #f4efe7;
+  --muted-foreground: #6b7280;
+  --border: #e6dfd3;
+  --primary: #1f6f5b;
+  --primary-foreground: #f6fffb;
+  --accent: #f1e8dd;
+  --destructive: #d64040;
+  --success: #2f8f62;
+  --radius: 14px;
+  --shadow: 0 20px 45px rgba(31, 41, 51, 0.08);
+}
 
 * {
   box-sizing: border-box;
@@ -334,8 +350,6 @@ select {
   background: #efe6d8;
   border-radius: 0 999px 999px 0;
 }
-
-
 
 .score-meta {
   display: flex;

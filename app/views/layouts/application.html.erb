@@ -14,7 +14,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%= stylesheet_link_tag :app %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll("[data-copy-link]").forEach((button) => {
