@@ -20,8 +20,10 @@
         <% @assessments.each do |assessment| %>
           <div class="card">
             <div class="company-header">
-              <strong class="company-name"><%= assessment.company_name %></strong>
+              <%= link_to assessment.company_name, invite_path(assessment.invite_token), class: "company-name" %>
             </div>
+
+
             <div class="company-details">
               <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
               <% if @status == "completed" %>

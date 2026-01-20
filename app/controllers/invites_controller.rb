@@ -9,6 +9,11 @@ class InvitesController < ApplicationController
       return
     end
 
+    if @assessment.status == "completed"
+      redirect_to results_path(token: @assessment.invite_token)
+      return
+    end
+
     if @assessment.status != "active"
       @message = "Assessment cancelled."
       render :unavailable, status: :forbidden
