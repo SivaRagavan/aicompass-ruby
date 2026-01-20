@@ -36,21 +36,12 @@ module ScoreCalculator
 
     {
       composite_score: composite_score,
-      pillar_scores: pillar_scores.select { |pillar| pillar[:selected] },
-      maturity_band: band_for_score(composite_score)
+      pillar_scores: pillar_scores.select { |pillar| pillar[:selected] }
     }
   end
 
   def self.normalize_weights(weights)
     total = weights.sum
     weights.map { |value| total.zero? ? 0 : value / total }
-  end
-
-  def self.band_for_score(score)
-    return "Leading" if score >= 80
-    return "Scaling" if score >= 60
-    return "Developing" if score >= 40
-
-    "Emerging"
   end
 end

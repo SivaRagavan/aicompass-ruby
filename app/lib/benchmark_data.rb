@@ -53,7 +53,7 @@ module BenchmarkData
       options: [
         {
           value: "not-yet",
-          label: "Not yet",
+          label: "Limited",
           recommended_pillars: %w[internal-adoption]
         },
         {

@@ -13,6 +13,6 @@ module AssessmentsHelper
       assessment.selections,
       assessment.scores
     )
-    "Score: #{format("%.1f", summary[:composite_score])}"
+    "Score: #{format("%.0f", summary[:composite_score])}"
   end
 end
