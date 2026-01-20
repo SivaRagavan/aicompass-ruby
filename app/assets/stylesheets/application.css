@@ -423,10 +423,14 @@ select {
 
 .inline-form {
   margin: 0;
+  display: inline-flex;
 }
 
+.inline-form button,
 .inline-form .button {
   width: auto;
+  appearance: none;
+  font: inherit;
 }
 
 .inline-meta {
