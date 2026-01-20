@@ -9,6 +9,10 @@
     <div class="score-card">
       <% score_percent = @summary[:composite_score].to_f.round %>
       <div class="score-meta">
+        <div class="score-title">
+          <span>AICO Score</span>
+          <span class="score-help" title="AI Compass Overview score based on module responses.">?</span>
+        </div>
         <strong><%= score_percent %></strong>
       </div>
       <div class="score-track" style="--score: <%= score_percent %>%;">
