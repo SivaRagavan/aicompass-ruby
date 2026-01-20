@@ -302,6 +302,10 @@ select {
   font-weight: 500;
 }
 
+.completed-note {
+  margin-top: 24px;
+}
+
 .score-help {
   display: inline-flex;
   align-items: center;

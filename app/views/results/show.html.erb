@@ -1,6 +1,6 @@
 <div class="card">
   <% company_name = @assessment.company_name.presence || "your company" %>
-  <h1>Assessment for <%= company_name %></h1>
+  <h1><%= company_name %></h1>
   <% assessor_name = @assessment.exec_profile["name"].presence || "Assessor" %>
   <% completed_date = @assessment.updated_at.to_date.strftime("%b %d, %Y") %>
 
@@ -55,5 +55,5 @@
     <% end %>
   </div>
 
-  <p class="card-subtitle">Completed by <%= assessor_name %> on <%= completed_date %></p>
+  <p class="card-subtitle completed-note">Assessment completed by <%= assessor_name %> on <%= completed_date %></p>
 </div>
