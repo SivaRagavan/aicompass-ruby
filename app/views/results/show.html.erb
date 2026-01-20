@@ -38,8 +38,8 @@
             <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
             <div class="pillar-metric-row">
               <span><%= metric ? metric[:name] : score["metric_id"] %></span>
-              <span><%= format("%.0f", score["score"].to_f * 20) %></span>
-              <span><%= metric ? metric[:questions].length : score["responses"].length %> questions</span>
+              <span>Score: <%= format("%.0f", score["score"].to_f * 20) %></span>
+              <span>Questions: <%= metric ? metric[:questions].length : score["responses"].length %></span>
             </div>
           <% end %>
         </div>
