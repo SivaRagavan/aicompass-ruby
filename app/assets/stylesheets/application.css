@@ -87,6 +87,16 @@ a {
   min-width: 720px;
 }
 
+@media (max-width: 900px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+}
+
 .grid-two {
   display: grid;
   gap: 32px;
