@@ -25,20 +25,24 @@
   <div class="pillar-chart">
     <% @summary[:pillar_scores].each do |pillar| %>
       <% pillar_scores = @assessment.scores.select { |score| score["pillar_id"] == pillar[:pillar_id] } %>
+      <% pillar_score = pillar[:score].to_f %>
+      <% pillar_percent = pillar_score <= 5 ? pillar_score * 20 : pillar_score %>
       <div class="pillar-bar" data-pillar>
         <button class="pillar-label" type="button" data-pillar-toggle>
           <span><%= pillar[:pillar_name] %></span>
-          <strong><%= format("%.0f", pillar[:score].to_f * 20) %></strong>
+          <strong><%= format("%.0f", pillar_percent) %></strong>
         </button>
         <div class="pillar-track">
-          <span style="width: <%= pillar[:score].to_f.round %>%"></span>
+          <span style="width: <%= [pillar_percent.round, 100].min %>%"></span>
         </div>
         <div class="pillar-metrics" data-pillar-metrics>
           <% pillar_scores.each do |score| %>
             <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
+            <% metric_score = score["score"].to_f %>
+            <% metric_percent = metric_score <= 5 ? metric_score * 20 : metric_score %>
             <div class="pillar-metric-row">
               <span><%= metric ? metric[:name] : score["metric_id"] %></span>
-              <span>Score: <%= format("%.0f", score["score"].to_f * 20) %></span>
+              <span>Score: <%= format("%.0f", metric_percent) %></span>
               <span>Questions: <%= metric ? metric[:questions].length : score["responses"].length %></span>
             </div>
           <% end %>
