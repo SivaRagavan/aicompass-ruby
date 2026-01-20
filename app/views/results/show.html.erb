@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <h2>Pillar Snapshot</h2>
+  <h2>Breakdown</h2>
   <div class="pillar-chart">
     <% @summary[:pillar_scores].each do |pillar| %>
       <% pillar_scores = @assessment.scores.select { |score| score["pillar_id"] == pillar[:pillar_id] } %>
