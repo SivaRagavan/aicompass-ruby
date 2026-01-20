@@ -37,9 +37,9 @@ class AssessmentsController < ApplicationController
       if params[:start_now] == "1"
         update_last_step(assessment, "invite")
         assessment.save
-        redirect_to invite_path(assessment.invite_token), notice: "Assessment ready."
+        redirect_to invite_path(assessment.invite_token)
       else
-        redirect_to dashboard_path, notice: "Assessment created."
+        redirect_to dashboard_path
       end
     else
       @assessment = assessment
