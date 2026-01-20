@@ -421,6 +421,14 @@ select {
   margin-top: 24px;
 }
 
+.inline-form {
+  margin: 0;
+}
+
+.inline-form .button {
+  width: auto;
+}
+
 .inline-meta {
   display: flex;
   flex-wrap: wrap;
