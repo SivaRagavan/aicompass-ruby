@@ -5,15 +5,16 @@
   <p class="card-subtitle">by <%= assessor_name %></p>
 
   <div class="stat-grid">
-    <div class="stat-card">
+    <div class="score-card">
       <% score_percent = @summary[:composite_score].to_f.round %>
-      <div class="score-ring" style="--score: <%= score_percent %>;">
-        <div class="score-ring-inner">
-          <strong><%= @summary[:maturity_band] %></strong>
-          <span><%= score_percent %></span>
-        </div>
+      <div class="score-track" style="--score: <%= score_percent %>%;">
+        <span class="score-indicator"></span>
+        <span class="score-band"><%= @summary[:maturity_band] %></span>
       </div>
-      <div class="small-text">Composite Score</div>
+      <div class="score-meta">
+        <span>Composite Score</span>
+        <strong><%= score_percent %></strong>
+      </div>
     </div>
   </div>
 
