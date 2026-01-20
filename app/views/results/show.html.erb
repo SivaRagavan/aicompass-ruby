@@ -1,15 +1,18 @@
 <div class="card">
-  <h1>Assessment Results</h1>
-  <p class="card-subtitle">Summary for <%= @assessment.company_name.presence || "your company" %>.</p>
+  <h1><%= @assessment.company_name.presence || "Assessment Results" %></h1>
+  <% assessor_name = @assessment.exec_profile["name"].presence || "Assessor" %>
+  <p class="card-subtitle"><%= assessor_name %></p>
 
   <div class="stat-grid">
     <div class="stat-card">
-      <div style="font-size: 28px; font-weight: 700;"><%= format("%.1f", @summary[:composite_score]) %></div>
+      <% score_percent = @summary[:composite_score].to_f.round %>
+      <div class="score-ring" style="--score: <%= score_percent %>;">
+        <div class="score-ring-inner">
+          <strong><%= @summary[:maturity_band] %></strong>
+          <span><%= score_percent %></span>
+        </div>
+      </div>
       <div class="small-text">Composite Score</div>
-    </div>
-    <div class="stat-card">
-      <span class="badge"><%= @summary[:maturity_band] %></span>
-      <div class="small-text">Maturity Band</div>
     </div>
   </div>
 

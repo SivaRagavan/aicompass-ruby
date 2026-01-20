@@ -251,6 +251,40 @@ select {
   min-width: 160px;
 }
 
+.score-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(#1f6f5b calc(var(--score) * 1%), #efe6d8 0);
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.score-ring-inner {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #fffaf3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #1f2933;
+}
+
+.score-ring-inner strong {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.score-ring-inner span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
