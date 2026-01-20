@@ -5,9 +5,9 @@
       <%= button_to "Cancel", assessment_path(@assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false }, class: "inline-form" } %>
     </div>
     <div class="stack">
-      <strong>Module <%= selected_metric_index + 1 %> of <%= @selected_metrics.length %></strong>
+      <strong>Completed <%= selected_metric_index %> of <%= @selected_metrics.length %></strong>
       <div class="progress-bar">
-        <% progress = (((selected_metric_index + 1).to_f / @selected_metrics.length) * 100).round %>
+        <% progress = ((selected_metric_index.to_f / @selected_metrics.length) * 100).round %>
         <span style="width: <%= progress %>%"></span>
       </div>
     </div>
