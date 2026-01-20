@@ -281,18 +281,6 @@ select {
   border-radius: 0 999px 999px 0;
 }
 
-.score-indicator {
-  position: absolute;
-  top: -6px;
-  left: calc(var(--score, 0%) - 6px);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #f59e0b;
-  border: 2px solid #fffaf3;
-  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.28);
-  z-index: 1;
-}
 
 .score-band {
   position: absolute;
