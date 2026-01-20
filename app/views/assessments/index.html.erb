@@ -20,7 +20,11 @@
         <% @assessments.each do |assessment| %>
           <div class="card">
             <div class="company-header">
-              <span class="company-name"><%= assessment.company_name %></span>
+              <% if @status == "cancelled" %>
+                <span class="company-name"><%= assessment.company_name %></span>
+              <% else %>
+                <%= link_to assessment.company_name, invite_path(assessment.invite_token), class: "company-name" %>
+              <% end %>
             </div>
 
 
