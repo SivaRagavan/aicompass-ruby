@@ -1,22 +1,22 @@
-<div class="card">
-  <h1>Assessor profile</h1>
-  <p class="card-subtitle">
+<div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+  <h1 class="text-[28px] tracking-[-0.02em]">Assessor profile</h1>
+  <p class="mt-2 leading-[1.6] text-[var(--muted-foreground)]">
     Share your details before completing the assessment.
   </p>
 
-  <%= form_with url: invite_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
-    <div class="grid-two">
-      <div class="input-group">
-        <%= label_tag :exec_name, "Your name" %>
-        <%= text_field_tag :exec_name, @profile["name"] %>
+  <%= form_with url: invite_path(@assessment.invite_token), method: :patch, class: "grid gap-4" do %>
+    <div class="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
+      <div class="flex flex-col gap-2">
+        <%= label_tag :exec_name, "Your name", class: "text-sm font-semibold text-[#374151]" %>
+        <%= text_field_tag :exec_name, @profile["name"], class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
       </div>
-      <div class="input-group">
-        <%= label_tag :exec_email, "Work email" %>
-        <%= email_field_tag :exec_email, @profile["email"] %>
+      <div class="flex flex-col gap-2">
+        <%= label_tag :exec_email, "Work email", class: "text-sm font-semibold text-[#374151]" %>
+        <%= email_field_tag :exec_email, @profile["email"], class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
       </div>
     </div>
-    <div class="card-footer">
-      <%= submit_tag "Continue to assessment", class: "button" %>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= submit_tag "Continue to assessment", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
     </div>
   <% end %>
 </div>

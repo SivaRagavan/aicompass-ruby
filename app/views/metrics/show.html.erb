@@ -1,24 +1,24 @@
-<div class="assessment-grid">
-  <aside class="metric-nav">
-    <div class="inline-meta" style="justify-content: space-between;">
+<div class="grid gap-6 lg:grid-cols-[240px_1fr]">
+  <aside class="rounded-[var(--radius)] border border-[var(--border)] bg-[var(--muted)] p-4">
+    <div class="flex items-center justify-between text-[13px] text-[var(--muted-foreground)]">
       <span>Progress</span>
-      <%= button_to "Cancel", assessment_path(@assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false }, class: "inline-form" } %>
+      <%= button_to "Cancel", assessment_path(@assessment), method: :patch, params: { status: "cancelled" }, class: "inline-flex items-center justify-center gap-2 rounded-full bg-transparent px-3 py-1.5 text-[13px] font-semibold text-[var(--primary)]", form: { data: { turbo: false }, class: "inline-form" } %>
     </div>
-    <div class="stack">
-      <strong>Completed <%= selected_metric_index %> of <%= @selected_metrics.length %></strong>
-      <div class="progress-bar">
+    <div class="mt-3 flex flex-col gap-2">
+      <strong class="text-sm">Completed <%= selected_metric_index %> of <%= @selected_metrics.length %></strong>
+      <div class="h-[10px] w-full rounded-full bg-[#efe6d8]">
         <% progress = ((selected_metric_index.to_f / @selected_metrics.length) * 100).round %>
-        <span style="width: <%= progress %>%"></span>
+        <span class="block h-full rounded-full bg-gradient-to-r from-[#2f8f62] to-[#1f6f5b]" style="width: <%= progress %>%"></span>
       </div>
     </div>
-    <div class="stack" style="margin-top: 20px;">
+    <div class="mt-5 flex flex-col gap-4">
       <% @selected_metrics.map { |entry| entry[:pillar] }.uniq.each do |pillar| %>
-        <div class="stack">
-          <strong><%= pillar[:name] %></strong>
+        <div class="flex flex-col gap-2">
+          <strong class="text-sm"><%= pillar[:name] %></strong>
           <% pillar[:metrics].each do |metric| %>
             <% active = metric[:id] == @current_metric[:metric][:id] %>
             <% completed = @assessment.scores.any? { |score| score["metric_id"] == metric[:id] && score["completed"] } %>
-            <div class="metric-row <%= "active" if active %>">
+            <div class="flex items-center justify-between rounded-lg px-2 py-1.5 text-[13px] <%= active ? "bg-[rgba(47,143,98,0.16)] text-[#1f6f5b] font-semibold" : "" %>">
               <span><%= metric[:name] %></span>
               <span><%= completed ? "✓" : "" %></span>
             </div>
@@ -28,19 +28,19 @@
     </div>
   </aside>
 
-  <div class="card">
-    <h1><%= @current_metric[:pillar][:name] %></h1>
-    <p class="card-subtitle"><%= @current_metric[:metric][:name] %></p>
-    <p class="small-text"><%= @current_metric[:metric][:description] %></p>
+  <div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+    <h1 class="text-[28px] tracking-[-0.02em]"><%= @current_metric[:pillar][:name] %></h1>
+    <p class="mt-2 text-[var(--muted-foreground)]"><%= @current_metric[:metric][:name] %></p>
+    <p class="text-[13px] text-[var(--muted-foreground)]"><%= @current_metric[:metric][:description] %></p>
 
-    <%= form_with url: assessment_update_path(@assessment.invite_token, @current_metric[:pillar][:id], @current_metric[:metric][:id]), method: :patch, class: "form-grid" do %>
+    <%= form_with url: assessment_update_path(@assessment.invite_token, @current_metric[:pillar][:id], @current_metric[:metric][:id]), method: :patch, class: "grid gap-4" do %>
       <% questions = @current_metric[:metric][:questions] %>
       <% labels = @current_metric[:metric][:labels] %>
       <% saved_score = @assessment.scores.find { |score| score["metric_id"] == @current_metric[:metric][:id] } %>
       <% responses = saved_score ? saved_score["responses"] : Array.new(questions.length, 0) %>
       <% questions.each_with_index do |question, index| %>
-        <div class="input-group">
-          <label><%= question[:prompt] %></label>
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-semibold text-[#374151]"><%= question[:prompt] %></label>
           <input class="range-input" type="range" min="0" max="3" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
           <div class="slider-labels">
             <% labels.each do |label| %>
@@ -50,13 +50,13 @@
         </div>
       <% end %>
 
-      <div class="card-footer">
-        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "Complete Assessment" : "Next Metric", class: "button") %>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "Complete Assessment" : "Next Metric", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
         <% if selected_metric_index.positive? %>
           <% previous = @selected_metrics[selected_metric_index - 1] %>
-          <%= link_to "Back", assessment_step_path(@assessment.invite_token, previous[:pillar][:id], previous[:metric][:id]), class: "button secondary" %>
+          <%= link_to "Back", assessment_step_path(@assessment.invite_token, previous[:pillar][:id], previous[:metric][:id]), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
         <% else %>
-          <%= link_to "Back", modules_path(@assessment.invite_token), class: "button secondary" %>
+          <%= link_to "Back", modules_path(@assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
         <% end %>
       </div>
     <% end %>

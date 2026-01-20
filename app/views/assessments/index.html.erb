@@ -1,34 +1,33 @@
-<div class="stack">
-  <div class="page-header">
+<div class="flex flex-col gap-3">
+  <div class="flex flex-wrap items-center justify-between gap-6">
     <div>
       <h1>Assessments</h1>
     </div>
-    <%= link_to "New assessment", new_assessment_path, class: "button" %>
+    <%= link_to "New assessment", new_assessment_path, class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
   </div>
 
-  <div class="assessment-tabs">
-    <div class="tab-buttons">
-      <%= link_to "Active", dashboard_path(status: "active"), class: "tab-button #{'active' if @status == 'active'}" %>
-      <%= link_to "Completed", dashboard_path(status: "completed"), class: "tab-button #{'active' if @status == 'completed'}" %>
-      <%= link_to "Cancelled", dashboard_path(status: "cancelled"), class: "tab-button #{'active' if @status == 'cancelled'}" %>
+  <div class="grid gap-5">
+    <div class="inline-flex gap-2 rounded-full bg-[#efe6d8] px-1.5 py-1.5">
+      <%= link_to "Active", dashboard_path(status: "active"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'active'}" %>
+      <%= link_to "Completed", dashboard_path(status: "completed"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'completed'}" %>
+      <%= link_to "Cancelled", dashboard_path(status: "cancelled"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'cancelled'}" %>
     </div>
 
     <% if @assessments.empty? %>
-      <p class="small-text">No <%= @status %> assessments yet.</p>
+      <p class="text-[13px] text-[var(--muted-foreground)]">No <%= @status %> assessments yet.</p>
     <% else %>
-      <div class="grid-two">
+      <div class="grid grid-cols-2 gap-8 max-[1024px]:grid-cols-1">
         <% @assessments.each do |assessment| %>
-          <div class="card">
-            <div class="company-header">
+          <div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+            <div class="mb-2">
               <% if @status == "cancelled" %>
-                <span class="company-name"><%= assessment.company_name %></span>
+                <span class="text-[16px] text-[#1f2933]"><%= assessment.company_name %></span>
               <% else %>
-                <%= link_to assessment.company_name, invite_path(assessment.invite_token), class: "company-name" %>
+                <%= link_to assessment.company_name, invite_path(assessment.invite_token), class: "text-[16px] text-[#1f2933]" %>
               <% end %>
             </div>
 
-
-            <div class="company-details">
+            <div class="grid gap-1.5 text-[13px] text-[var(--muted-foreground)]">
               <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
               <% if @status == "completed" %>
                 <span>Completed <%= assessment.updated_at.to_date.strftime("%b %d, %Y") %></span>
@@ -42,13 +41,13 @@
               <% end %>
             </div>
             <% if @status == "completed" %>
-              <div class="card-footer">
-                <%= link_to "View Results", results_path(assessment.invite_token), class: "button outline small" %>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <%= link_to "View Results", results_path(assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-transparent px-3 py-1.5 text-[13px] font-semibold text-[var(--primary)]" %>
               </div>
             <% elsif @status == "active" %>
-              <div class="card-footer">
-                <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
-                <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy link</button>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <%= link_to "Resume", invite_path(assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-transparent px-3 py-1.5 text-[13px] font-semibold text-[var(--primary)]" %>
+                <button class="inline-flex items-center justify-center gap-2 rounded-full bg-transparent px-3 py-1.5 text-[13px] font-semibold text-[var(--primary)]" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy link</button>
               </div>
             <% end %>
           </div>

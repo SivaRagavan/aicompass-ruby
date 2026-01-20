@@ -50,29 +50,29 @@
   </head>
 
   <body>
-    <div class="app-shell">
-      <header class="top-nav">
-        <div class="container nav-content">
-          <%= link_to (current_user ? dashboard_path : root_path), class: "logo" do %>
-            <%= image_tag "/icon.png", alt: "Compass", class: "logo-mark" %>
+    <div class="min-h-screen bg-[var(--background)]">
+      <header class="sticky top-0 z-10 border-b border-[var(--border)] bg-[var(--background)]">
+        <div class="mx-auto flex w-full max-w-[1160px] items-center justify-between px-8 py-5">
+          <%= link_to (current_user ? dashboard_path : root_path), class: "inline-flex items-center gap-3 text-[20px] font-semibold tracking-[-0.02em] text-[var(--primary)]" do %>
+            <%= image_tag "/icon.png", alt: "Compass", class: "h-8 w-8 rounded-[10px] bg-white p-1 shadow-[0_10px_20px_rgba(31,41,51,0.12)]" %>
             <span>AI Compass</span>
           <% end %>
-          <div class="nav-actions">
+          <div class="flex gap-3">
             <% if current_user %>
-              <%= button_to "Sign out", signout_path, method: :delete, class: "button outline", form: { data: { turbo: false } } %>
+              <%= button_to "Sign out", signout_path, method: :delete, class: "inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-transparent px-5 py-2.5 font-semibold text-[var(--primary)] shadow-none", form: { data: { turbo: false } } %>
             <% else %>
-              <%= link_to "Sign in", signin_path, class: "button" %>
+              <%= link_to "Sign in", signin_path, class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
             <% end %>
           </div>
         </div>
       </header>
 
-      <main class="container main-content">
+      <main class="mx-auto w-full max-w-[1160px] px-8 py-14 pb-20 min-[900px]:min-w-[720px]">
         <% if notice %>
-          <div class="alert success"><%= notice %></div>
+          <div class="mb-4 rounded-[12px] bg-[rgba(22,163,74,0.1)] px-4 py-3 text-sm text-green-700"><%= notice %></div>
         <% end %>
         <% if alert %>
-          <div class="alert error"><%= alert %></div>
+          <div class="mb-4 rounded-[12px] bg-[rgba(220,38,38,0.1)] px-4 py-3 text-sm text-red-700"><%= alert %></div>
         <% end %>
         <%= yield %>
       </main>

@@ -1,23 +1,31 @@
-<div class="card">
-  <h1>Modules</h1>
-  <p class="card-subtitle">Confirm the modules to include in this assessment.</p>
+<div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+  <h1 class="text-[28px] tracking-[-0.02em]">Select modules</h1>
+  <p class="mt-2 leading-[1.6] text-[var(--muted-foreground)]">Choose the modules relevant to the company.</p>
 
-  <%= form_with url: modules_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
-    <div class="module-list">
+  <%= form_with url: modules_path(@assessment.invite_token), method: :patch, class: "grid gap-4" do %>
+    <div class="flex flex-col gap-3">
       <% @pillars.each do |pillar| %>
         <% checked = @assessment.selections.any? { |item| item["pillar_id"] == pillar[:id] && item["selected"] } %>
-        <label class="module-row">
-          <span class="module-check">
+        <label class="grid items-center gap-3 rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-4 py-3 text-sm">
+          <span class="flex items-center">
             <%= check_box_tag "pillars[]", pillar[:id], checked %>
           </span>
-          <span class="module-name"><%= pillar[:name] %></span>
-          <span class="module-meta">
+          <span class="font-semibold text-[#1f2933]"><%= pillar[:name] %></span>
+          <span class="text-[13px] text-[var(--muted-foreground)]">
             <%= pillar[:metrics].length %> metrics ·
             <%= pillar[:metrics].sum { |metric| metric[:questions].length } %> questions
           </span>
         </label>
       <% end %>
     </div>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= submit_tag "Start Modules", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
+      <%= link_to "Back", qualify_path(@assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
+    </div>
+  <% end %>
+</div>
+
 
     <div class="card-footer">
       <%= submit_tag "Start Modules", class: "button" %>

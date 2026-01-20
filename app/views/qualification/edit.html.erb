@@ -1,18 +1,22 @@
-<div class="card">
-  <h1>Qualification</h1>
-  <p class="card-subtitle">
-    Answer a few questions to pre-select the modules that matter most.
-  </p>
+<div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+  <h1 class="text-[28px] tracking-[-0.02em]">Qualification</h1>
+  <p class="mt-2 leading-[1.6] text-[var(--muted-foreground)]">Help tailor the assessment to the company context.</p>
 
-  <%= form_with url: qualify_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
-    <% @questions.each do |question| %>
-      <div class="input-group">
-        <%= label_tag "answers_#{question[:id]}", question[:prompt] %>
-        <% if question[:helper].present? %>
-          <p class="small-text"><%= question[:helper] %></p>
-        <% end %>
-        <%= select_tag "answers[#{question[:id]}]", options_for_select(question[:options].map { |opt| [opt[:label], opt[:value]] }, @assessment.responses.dig("qualification", question[:id])), include_blank: "Select an answer" %>
+  <%= form_with url: qualify_path(@assessment.invite_token), method: :patch, class: "grid gap-4" do %>
+    <% BenchmarkData.qualify_questions.each do |question| %>
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-[#374151]"><%= question[:prompt] %></label>
+        <%= select_tag "qualification[#{question[:id]}]", options_for_select(question[:options].map { |option| [option[:label], option[:value]] }, @assessment.responses.dig("qualification", question[:id])), include_blank: "Select", class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
+        <div class="text-[13px] text-[var(--muted-foreground)]"><%= question[:helper] %></div>
       </div>
+    <% end %>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= submit_tag "Continue", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
+      <%= link_to "Back", company_path(@assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
+    </div>
+  <% end %>
+</div>
+
     <% end %>
 
     <div class="card-footer">

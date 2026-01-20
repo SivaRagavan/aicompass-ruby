@@ -1,27 +1,27 @@
-<div class="card">
-  <h1>Company Details</h1>
-  <p class="card-subtitle">Confirm the company information before moving into the assessment.</p>
+<div class="rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+  <h1 class="text-[28px] tracking-[-0.02em]">Company Details</h1>
+  <p class="mt-2 leading-[1.6] text-[var(--muted-foreground)]">Confirm the company information before moving into the assessment.</p>
 
-  <%= form_with url: company_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
-    <div class="input-group">
-      <%= label_tag :company_name, "Company Name" %>
-      <%= text_field_tag :company_name, @assessment.company_name %>
+  <%= form_with url: company_path(@assessment.invite_token), method: :patch, class: "grid gap-4" do %>
+    <div class="flex flex-col gap-2">
+      <%= label_tag :company_name, "Company Name", class: "text-sm font-semibold text-[#374151]" %>
+      <%= text_field_tag :company_name, @assessment.company_name, class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
     </div>
-    <div class="input-group">
-      <%= label_tag :company_industry, "Industry" %>
-      <%= select_tag :company_industry, options_for_select(IndustryData::LIST, @assessment.company_industry), include_blank: "Select an industry" %>
+    <div class="flex flex-col gap-2">
+      <%= label_tag :company_industry, "Industry", class: "text-sm font-semibold text-[#374151]" %>
+      <%= select_tag :company_industry, options_for_select(IndustryData::LIST, @assessment.company_industry), include_blank: "Select an industry", class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
     </div>
-    <div class="input-group">
-      <%= label_tag :company_size, "Company Size" %>
+    <div class="flex flex-col gap-2">
+      <%= label_tag :company_size, "Company Size", class: "text-sm font-semibold text-[#374151]" %>
       <%= select_tag :company_size, options_for_select([
         ["Startup (1-100)", "startup"],
         ["Mid-market (100-1000)", "mid"],
         ["Enterprise (1000+)", "enterprise"]
-      ], @assessment.company_size), include_blank: "Select" %>
+      ], @assessment.company_size), include_blank: "Select", class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
     </div>
-    <div class="card-footer">
-      <%= submit_tag "Continue", class: "button" %>
-      <%= link_to "Back", invite_path(@assessment.invite_token), class: "button secondary" %>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= submit_tag "Continue", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
+      <%= link_to "Back", invite_path(@assessment.invite_token), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
     </div>
   <% end %>
 </div>
