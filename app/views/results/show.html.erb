@@ -7,7 +7,7 @@
 
   <div class="stat-grid">
     <div class="score-card">
-      <% score_percent = @summary[:composite_score].to_f.round %>
+      <% score_percent = @summary[:composite_score].to_f.round.clamp(0, 100) %>
       <div class="score-meta">
         <div class="score-title">
           <span>AICO Score</span>
@@ -25,8 +25,7 @@
   <div class="pillar-chart">
     <% @summary[:pillar_scores].each do |pillar| %>
       <% pillar_scores = @assessment.scores.select { |score| score["pillar_id"] == pillar[:pillar_id] } %>
-      <% pillar_score = pillar[:score].to_f %>
-      <% pillar_percent = pillar_score <= 5 ? pillar_score * 20 : pillar_score %>
+      <% pillar_percent = pillar[:score].to_f.round.clamp(0, 100) %>
       <div class="pillar-bar" data-pillar>
         <button class="pillar-label" type="button" data-pillar-toggle>
           <span><%= pillar[:pillar_name] %></span>
@@ -38,8 +37,7 @@
         <div class="pillar-metrics" data-pillar-metrics>
           <% pillar_scores.each do |score| %>
             <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
-            <% metric_score = score["score"].to_f %>
-            <% metric_percent = metric_score <= 5 ? metric_score * 20 : metric_score %>
+            <% metric_percent = (score["score"].to_f / 5 * 100).round.clamp(0, 100) %>
             <div class="pillar-metric-row">
               <span><%= metric ? metric[:name] : score["metric_id"] %></span>
               <span>Score: <%= format("%.0f", metric_percent) %></span>

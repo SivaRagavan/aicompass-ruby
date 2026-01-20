@@ -37,11 +37,11 @@
       <% questions = @current_metric[:metric][:questions] %>
       <% labels = @current_metric[:metric][:labels] %>
       <% saved_score = @assessment.scores.find { |score| score["metric_id"] == @current_metric[:metric][:id] } %>
-      <% responses = saved_score ? saved_score["responses"] : Array.new(questions.length, 1) %>
+      <% responses = saved_score ? saved_score["responses"] : Array.new(questions.length, 0) %>
       <% questions.each_with_index do |question, index| %>
         <div class="input-group">
           <label><%= question[:prompt] %></label>
-          <input class="range-input" type="range" min="1" max="5" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
+          <input class="range-input" type="range" min="0" max="5" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
           <div class="slider-labels">
             <% labels.each do |label| %>
               <span><%= label %></span>

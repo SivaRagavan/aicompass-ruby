@@ -1,7 +1,7 @@
 module ScoreCalculator
   def self.calculate(pillars, selections, scores)
     selected_metric_ids = selections.to_a.select { |item| item["selected"] }.map { |item| item["metric_id"] }
-    score_map = scores.to_a.to_h { |item| [item["metric_id"], item["score"].to_f] }
+    score_map = scores.to_a.to_h { |item| [ item["metric_id"], item["score"].to_f ] }
 
     pillar_scores = pillars.map do |pillar|
       metrics = pillar[:metrics].select { |metric| selected_metric_ids.include?(metric[:id]) }
@@ -13,7 +13,7 @@ module ScoreCalculator
           score = score_map.fetch(metric[:id], 0)
           sum + score * weights[index]
         end
-        { pillar_id: pillar[:id], pillar_name: pillar[:name], score: weighted_score * 20 }
+        { pillar_id: pillar[:id], pillar_name: pillar[:name], score: (weighted_score / 5) * 100 }
       end
     end
 
