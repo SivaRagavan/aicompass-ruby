@@ -6,15 +6,17 @@
     <div class="flex flex-col gap-3">
       <% @pillars.each do |pillar| %>
         <% checked = @assessment.selections.any? { |item| item["pillar_id"] == pillar[:id] && item["selected"] } %>
-        <label class="grid items-center gap-3 rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-4 py-3 text-sm">
+        <label class="flex items-center gap-4 rounded-[14px] border border-[var(--border)] bg-white/70 px-5 py-4 text-sm shadow-[0_10px_25px_rgba(31,41,51,0.06)]">
           <span class="flex items-center">
-            <%= check_box_tag "pillars[]", pillar[:id], checked %>
+            <%= check_box_tag "pillars[]", pillar[:id], checked, class: "h-4 w-4 rounded border-[var(--border)] text-[var(--primary)] focus:ring-[var(--primary)]" %>
           </span>
-          <span class="font-semibold text-[#1f2933]"><%= pillar[:name] %></span>
-          <span class="text-[13px] text-[var(--muted-foreground)]">
-            <%= pillar[:metrics].length %> metrics ·
-            <%= pillar[:metrics].sum { |metric| metric[:questions].length } %> questions
-          </span>
+          <div class="flex flex-1 items-center justify-between gap-4">
+            <span class="text-[15px] font-semibold text-[#1f2933]"><%= pillar[:name] %></span>
+            <span class="text-[13px] text-[var(--muted-foreground)]">
+              <%= pillar[:metrics].length %> metrics ·
+              <%= pillar[:metrics].sum { |metric| metric[:questions].length } %> questions
+            </span>
+          </div>
         </label>
       <% end %>
     </div>
