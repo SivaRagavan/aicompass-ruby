@@ -282,13 +282,6 @@ select {
 }
 
 
-.score-summary {
-  margin: 0;
-  font-size: 15px;
-  color: #1f2933;
-  text-align: center;
-  font-weight: 600;
-}
 
 .score-meta {
   display: flex;
