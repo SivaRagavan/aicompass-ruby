@@ -1,19 +1,19 @@
-<div class="card" style="max-width: 480px;">
-  <h1>Sign in</h1>
-  <p class="card-subtitle">Access your private equity company assessments.</p>
+<div class="mx-auto max-w-[480px] rounded-[18px] border border-[var(--border)] bg-[#fffaf3] p-[30px] shadow-[0_18px_40px_rgba(31,41,51,0.08)]">
+  <h1 class="text-[28px] tracking-[-0.02em]">Sign in</h1>
+  <p class="mt-2 leading-[1.6] text-[var(--muted-foreground)]">Access your private equity company assessments.</p>
 
-  <%= form_with url: signin_path, method: :post, class: "form-grid" do %>
-    <div class="input-group">
-      <%= label_tag :email, "Email" %>
-      <%= email_field_tag :email, params[:email], placeholder: "you@firm.com" %>
+  <%= form_with url: signin_path, method: :post, class: "grid gap-4" do %>
+    <div class="flex flex-col gap-2">
+      <%= label_tag :email, "Email", class: "text-sm font-semibold text-[#374151]" %>
+      <%= email_field_tag :email, params[:email], placeholder: "you@firm.com", class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
     </div>
-    <div class="input-group">
-      <%= label_tag :password, "Password" %>
-      <%= password_field_tag :password, nil, placeholder: "••••••••" %>
+    <div class="flex flex-col gap-2">
+      <%= label_tag :password, "Password", class: "text-sm font-semibold text-[#374151]" %>
+      <%= password_field_tag :password, nil, placeholder: "••••••••", class: "rounded-[12px] border border-[var(--border)] bg-[#fffaf3] px-3.5 py-2.5 text-sm" %>
     </div>
-    <div class="card-footer">
-      <%= submit_tag "Sign in", class: "button" %>
-      <%= link_to "Need an account?", register_path, class: "button ghost" %>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= submit_tag "Sign in", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]" %>
+      <%= link_to "Need an account?", register_path, class: "inline-flex items-center justify-center gap-2 rounded-full bg-transparent px-5 py-2.5 font-semibold text-[var(--primary)]" %>
     </div>
   <% end %>
 </div>
