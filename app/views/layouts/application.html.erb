@@ -38,10 +38,12 @@
         });
 
         document.querySelectorAll("[data-pillar]").forEach((pill) => {
-          const toggle = pill.querySelector("[data-pillar-toggle]");
-          if (!toggle) return;
-          toggle.addEventListener("click", () => {
-            pill.classList.toggle("is-open");
+          const toggles = pill.querySelectorAll("[data-pillar-toggle]");
+          if (!toggles.length) return;
+          toggles.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+              pill.classList.toggle("is-open");
+            });
           });
         });
       });
