@@ -42,7 +42,7 @@
             <% elsif @status == "active" %>
               <div class="card-footer">
                 <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
-                <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy assessment link</button>
+                <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy link</button>
               </div>
             <% end %>
           </div>
