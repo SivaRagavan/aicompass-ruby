@@ -2,7 +2,7 @@
   <aside class="metric-nav">
     <div class="inline-meta" style="justify-content: space-between;">
       <span>Progress</span>
-      <%= link_to "Reset", root_path, class: "button outline small" %>
+      <%= button_to "Cancel", assessment_path(@assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false }, class: "inline-form" } %>
     </div>
     <div class="stack">
       <strong><%= selected_metric_index + 1 %> / <%= @selected_metrics.length %></strong>
