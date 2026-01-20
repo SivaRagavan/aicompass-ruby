@@ -282,22 +282,12 @@ select {
 }
 
 
-.score-band {
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1f2933;
-}
-
 .score-summary {
   margin: 0;
-  font-size: 13px;
-  color: var(--muted-foreground);
+  font-size: 15px;
+  color: #1f2933;
   text-align: center;
+  font-weight: 600;
 }
 
 .score-meta {
