@@ -34,6 +34,14 @@
     text-decoration: none;
   }
 
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  a[role="button"] {
+    @apply cursor-pointer;
+  }
+
 }
 
 @layer components {
