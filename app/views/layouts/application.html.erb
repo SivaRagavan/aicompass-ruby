@@ -54,6 +54,8 @@
 
           if (loading) {
             submitter.dataset.originalLabel = label;
+            submitter.dataset.originalMinWidth = submitter.style.minWidth || "";
+            submitter.style.minWidth = `${submitter.offsetWidth}px`;
             if (isInput) {
               submitter.value = "...";
             } else {
@@ -67,7 +69,9 @@
             } else {
               submitter.textContent = submitter.dataset.originalLabel;
             }
+            submitter.style.minWidth = submitter.dataset.originalMinWidth;
             delete submitter.dataset.originalLabel;
+            delete submitter.dataset.originalMinWidth;
             submitter.disabled = false;
             submitter.classList.remove("opacity-60", "cursor-not-allowed");
           }
