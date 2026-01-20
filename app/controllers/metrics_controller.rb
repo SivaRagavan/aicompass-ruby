@@ -97,7 +97,7 @@ class MetricsController < ApplicationController
     responses = params.fetch(:responses, {}).to_unsafe_h
     question_count = metric_entry[:metric][:questions].length
     (0...question_count).map do |index|
-      responses[index.to_s].to_i.clamp(0, 5)
+      responses[index.to_s].to_i.clamp(0, 3)
     end
   end
 

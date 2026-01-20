@@ -1,5 +1,5 @@
 module BenchmarkData
-  DEFAULT_LABELS = [ "Not yet", "Ad-hoc", "Basic", "Defined", "Advanced", "Leading" ].freeze
+  DEFAULT_LABELS = [ "Not yet", "Ad hoc", "Developing", "Well defined" ].freeze
 
   QUALIFY_QUESTIONS = [
     {

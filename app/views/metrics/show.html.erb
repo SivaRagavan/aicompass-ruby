@@ -41,7 +41,7 @@
       <% questions.each_with_index do |question, index| %>
         <div class="input-group">
           <label><%= question[:prompt] %></label>
-          <input class="range-input" type="range" min="0" max="5" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
+          <input class="range-input" type="range" min="0" max="3" step="1" name="responses[<%= index %>]" value="<%= responses[index] %>" />
           <div class="slider-labels">
             <% labels.each do |label| %>
               <span><%= label %></span>

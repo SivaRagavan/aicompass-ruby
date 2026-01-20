@@ -16,7 +16,7 @@ module ScoreCalculator
         {
           pillar_id: pillar[:id],
           pillar_name: pillar[:name],
-          score: (weighted_score / 5) * 100,
+          score: (weighted_score / 3) * 100,
           selected: true
         }
       end

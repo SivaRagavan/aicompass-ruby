@@ -35,7 +35,7 @@
         <div class="pillar-metrics" data-pillar-metrics>
           <% pillar_scores.each do |score| %>
             <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
-            <% metric_percent = (score["score"].to_f / 5 * 100).round.clamp(0, 100) %>
+            <% metric_percent = (score["score"].to_f / 3 * 100).round.clamp(0, 100) %>
             <div class="pillar-metric-row">
               <span><%= metric ? metric[:name] : score["metric_id"] %></span>
               <span>Score: <%= format("%.0f", metric_percent) %></span>
