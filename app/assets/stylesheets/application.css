@@ -266,7 +266,6 @@ select {
   background: linear-gradient(90deg, #dc2626 0%, #f59e0b 50%, #16a34a 100%);
   position: relative;
   margin-bottom: 10px;
-  overflow: hidden;
 }
 
 .score-track::after {
@@ -277,6 +276,7 @@ select {
   right: 0;
   width: calc(100% - var(--score, 0%));
   background: #efe6d8;
+  border-radius: 0 999px 999px 0;
 }
 
 .score-indicator {
