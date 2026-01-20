@@ -9,10 +9,8 @@
       <% score_percent = @summary[:composite_score].to_f.round.clamp(0, 100) %>
       <div class="score-meta">
         <div class="score-title">
-          <div>
-            <span>AICO Score</span>
-            <span class="score-subtitle">AI Compass Outlook Score</span>
-          </div>
+          <span>AICO Score</span>
+          <span class="score-subtitle">AI Compass Outlook Score</span>
         </div>
         <strong><%= score_percent %></strong>
       </div>
