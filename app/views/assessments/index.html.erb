@@ -37,7 +37,7 @@
             </div>
             <% if @status == "completed" %>
               <div class="card-footer">
-                <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
+                <%= link_to "Complete Assessment", results_path(assessment.invite_token), class: "button outline small" %>
               </div>
             <% elsif @status == "active" %>
               <div class="card-footer">
