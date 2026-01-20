@@ -293,6 +293,13 @@ select {
   color: #1f2933;
 }
 
+.score-summary {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
 .score-meta {
   display: flex;
   flex-direction: column;
