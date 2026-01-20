@@ -4,8 +4,19 @@ class AssessmentsController < ApplicationController
 
   before_action :require_authentication
 
-  def index
-    @assessments = current_user.assessments.recent_first
+  def active
+    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "active" && !assessment.expired? }
+    @status = "active"
+  end
+
+  def completed
+    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "completed" }
+    @status = "completed"
+  end
+
+  def cancelled
+    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "cancelled" || assessment.expired? }
+    @status = "cancelled"
   end
 
   def new

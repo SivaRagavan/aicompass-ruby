@@ -6,85 +6,48 @@
     <%= link_to "New assessment", new_assessment_path, class: "button" %>
   </div>
 
-  <% active_assessments = @assessments.select { |assessment| assessment.status == "active" && !assessment.expired? } %>
-  <% completed_assessments = @assessments.select { |assessment| assessment.status == "completed" } %>
-  <% cancelled_assessments = @assessments.select { |assessment| assessment.status == "cancelled" || assessment.expired? } %>
-
-  <div class="assessment-tabs" data-tab-group>
+  <div class="assessment-tabs">
     <div class="tab-buttons">
-      <button class="tab-button active" type="button" data-tab-button="active">Active</button>
-      <button class="tab-button" type="button" data-tab-button="completed">Completed</button>
-      <button class="tab-button" type="button" data-tab-button="cancelled">Cancelled</button>
+      <%= link_to "Active", active_assessments_path, class: "tab-button #{'active' if @status == 'active'}" %>
+      <%= link_to "Completed", completed_assessments_path, class: "tab-button #{'active' if @status == 'completed'}" %>
+      <%= link_to "Cancelled", cancelled_assessments_path, class: "tab-button #{'active' if @status == 'cancelled'}" %>
     </div>
 
-    <section class="tab-panel active" data-tab-panel="active">
-      <% if active_assessments.empty? %>
-        <p class="small-text">No active assessments yet.</p>
-      <% else %>
-        <div class="grid-two">
-          <% active_assessments.each do |assessment| %>
-            <div class="card">
-              <div class="company-header">
-                <strong class="company-name"><%= assessment.company_name %></strong>
-              </div>
-              <div class="company-details">
-                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
+    <% if @assessments.empty? %>
+      <p class="small-text">No <%= @status %> assessments yet.</p>
+    <% else %>
+      <div class="grid-two">
+        <% @assessments.each do |assessment| %>
+          <div class="card">
+            <div class="company-header">
+              <strong class="company-name"><%= assessment.company_name %></strong>
+            </div>
+            <div class="company-details">
+              <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
+              <% if @status == "completed" %>
+                <span>Completed <%= assessment.updated_at.to_date.strftime("%b %d, %Y") %></span>
+                <span><%= assessment_score_label(assessment) %></span>
+              <% elsif @status == "active" %>
                 <span>Expires <%= assessment.invite_expires_at.to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
+              <% else %>
+                <span><%= assessment_progress_label(assessment) %></span>
+              <% end %>
+            </div>
+            <% if @status == "completed" %>
+              <div class="card-footer">
+                <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
               </div>
+            <% elsif @status == "active" %>
               <div class="card-footer">
                 <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
                 <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy active link</button>
                 <%= button_to "Cancel", assessment_path(assessment), method: :patch, params: { status: "cancelled" }, class: "button ghost small", form: { data: { turbo: false } } %>
               </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-
-    <section class="tab-panel" data-tab-panel="completed">
-      <% if completed_assessments.empty? %>
-        <p class="small-text">No completed assessments yet.</p>
-      <% else %>
-        <div class="grid-two">
-          <% completed_assessments.each do |assessment| %>
-            <div class="card">
-              <div class="company-header">
-                <strong class="company-name"><%= assessment.company_name %></strong>
-              </div>
-              <div class="company-details">
-                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
-                <span>Completed <%= assessment.updated_at.to_date.strftime("%b %d, %Y") %></span>
-                <span><%= assessment_score_label(assessment) %></span>
-              </div>
-              <div class="card-footer">
-                <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-
-    <section class="tab-panel" data-tab-panel="cancelled">
-      <% if cancelled_assessments.empty? %>
-        <p class="small-text">No cancelled assessments yet.</p>
-      <% else %>
-        <div class="grid-two">
-          <% cancelled_assessments.each do |assessment| %>
-            <div class="card">
-              <div class="company-header">
-                <strong class="company-name"><%= assessment.company_name %></strong>
-              </div>
-              <div class="company-details">
-                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
-                <span><%= assessment_progress_label(assessment) %></span>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get "register" => "registrations#new"
   post "register" => "registrations#create"
 
-  get "dashboard" => "assessments#index"
+  get "dashboard" => "assessments#active"
+  get "assessments/active" => "assessments#active", as: :active_assessments
+  get "assessments/completed" => "assessments#completed", as: :completed_assessments
+  get "assessments/cancelled" => "assessments#cancelled", as: :cancelled_assessments
   get "assessments/new" => "assessments#new", as: :new_assessment
   post "assessments" => "assessments#create"
   patch "assessments/:id" => "assessments#update", as: :assessment

@@ -18,19 +18,6 @@
     <%= stylesheet_link_tag :app %>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll("[data-tab-group]").forEach((group) => {
-          const buttons = group.querySelectorAll("[data-tab-button]");
-          const panels = group.querySelectorAll("[data-tab-panel]");
-
-          buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-              const target = button.dataset.tabButton;
-              buttons.forEach((item) => item.classList.toggle("active", item === button));
-              panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.tabPanel === target));
-            });
-          });
-        });
-
         document.querySelectorAll("[data-copy-link]").forEach((button) => {
           button.addEventListener("click", async () => {
             const link = button.dataset.copyLink;

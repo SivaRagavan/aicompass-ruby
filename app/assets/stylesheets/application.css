@@ -93,7 +93,7 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .grid-two {
     grid-template-columns: 1fr;
   }
@@ -347,6 +347,10 @@ select {
 .assessment-tabs {
   display: grid;
   gap: 20px;
+}
+
+.tab-buttons a {
+  text-decoration: none;
 }
 
 .tab-buttons {
