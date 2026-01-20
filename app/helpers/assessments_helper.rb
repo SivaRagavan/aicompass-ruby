@@ -6,4 +6,13 @@ module AssessmentsHelper
   def assessment_progress_label(assessment)
     "Progress: #{assessment.progress_percent}%"
   end
+
+  def assessment_score_label(assessment)
+    summary = ScoreCalculator.calculate(
+      BenchmarkData.pillars,
+      assessment.selections,
+      assessment.scores
+    )
+    "Score: #{format("%.1f", summary[:composite_score])}"
+  end
 end

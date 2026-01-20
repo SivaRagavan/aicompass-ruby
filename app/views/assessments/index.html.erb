@@ -54,7 +54,7 @@
               </div>
               <div class="company-details">
                 <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
-                <span><%= assessment_progress_label(assessment) %></span>
+                <span><%= assessment_score_label(assessment) %></span>
               </div>
               <div class="card-footer">
                 <%= link_to "View results", results_path(assessment.invite_token), class: "button outline small" %>
