@@ -4,22 +4,18 @@ class AssessmentsController < ApplicationController
 
   before_action :require_authentication
 
-  def active
-    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "active" && !assessment.expired? }
-    @status = "active"
-    render :index
-  end
-
-  def completed
-    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "completed" }
-    @status = "completed"
-    render :index
-  end
-
-  def cancelled
-    @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "cancelled" || assessment.expired? }
-    @status = "cancelled"
-    render :index
+  def index
+    @status = params[:status].presence_in(%w[active completed cancelled]) || "active"
+    @assessments = current_user.assessments.recent_first.select do |assessment|
+      case @status
+      when "completed"
+        assessment.status == "completed"
+      when "cancelled"
+        assessment.status == "cancelled" || assessment.expired?
+      else
+        assessment.status == "active" && !assessment.expired?
+      end
+    end
   end
 
   def new

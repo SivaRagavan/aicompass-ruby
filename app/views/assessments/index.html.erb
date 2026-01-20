@@ -8,9 +8,9 @@
 
   <div class="assessment-tabs">
     <div class="tab-buttons">
-      <%= link_to "Active", active_assessments_path, class: "tab-button #{'active' if @status == 'active'}" %>
-      <%= link_to "Completed", completed_assessments_path, class: "tab-button #{'active' if @status == 'completed'}" %>
-      <%= link_to "Cancelled", cancelled_assessments_path, class: "tab-button #{'active' if @status == 'cancelled'}" %>
+      <%= link_to "Active", dashboard_path(status: "active"), class: "tab-button #{'active' if @status == 'active'}" %>
+      <%= link_to "Completed", dashboard_path(status: "completed"), class: "tab-button #{'active' if @status == 'completed'}" %>
+      <%= link_to "Cancelled", dashboard_path(status: "cancelled"), class: "tab-button #{'active' if @status == 'cancelled'}" %>
     </div>
 
     <% if @assessments.empty? %>
