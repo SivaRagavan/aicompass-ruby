@@ -441,6 +441,39 @@ select {
   color: var(--muted-foreground);
 }
 
+.module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.module-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fffaf3;
+  font-size: 14px;
+}
+
+.module-check {
+  display: flex;
+  align-items: center;
+}
+
+.module-name {
+  font-weight: 600;
+  color: #1f2933;
+}
+
+.module-meta {
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
 .company-name {
   font-size: 16px;
   color: #1f2933;

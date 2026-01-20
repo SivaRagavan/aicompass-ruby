@@ -3,24 +3,21 @@
   <p class="card-subtitle">Confirm the modules to include in this assessment.</p>
 
   <%= form_with url: modules_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
-    <% @pillars.each do |pillar| %>
-      <% checked = @assessment.selections.any? { |item| item["pillar_id"] == pillar[:id] && item["selected"] } %>
-      <div class="card" style="box-shadow: none;">
-        <div class="inline-meta">
-          <strong><%= pillar[:name] %></strong>
-          <span>
+    <div class="module-list">
+      <% @pillars.each do |pillar| %>
+        <% checked = @assessment.selections.any? { |item| item["pillar_id"] == pillar[:id] && item["selected"] } %>
+        <label class="module-row">
+          <span class="module-check">
+            <%= check_box_tag "pillars[]", pillar[:id], checked %>
+          </span>
+          <span class="module-name"><%= pillar[:name] %></span>
+          <span class="module-meta">
             <%= pillar[:metrics].length %> metrics ·
             <%= pillar[:metrics].sum { |metric| metric[:questions].length } %> questions
           </span>
-        </div>
-        <div class="card-footer">
-          <label>
-            <%= check_box_tag "pillars[]", pillar[:id], checked %>
-            Include module
-          </label>
-        </div>
-      </div>
-    <% end %>
+        </label>
+      <% end %>
+    </div>
 
     <div class="card-footer">
       <%= submit_tag "Start Modules", class: "button" %>
