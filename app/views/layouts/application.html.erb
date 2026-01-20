@@ -47,35 +47,47 @@
           });
         });
 
-        document.querySelectorAll("form").forEach((form) => {
-          form.addEventListener("turbo:submit-start", (event) => {
-            const submitter = event.detail?.submitter;
-            if (submitter) {
-              submitter.dataset.originalLabel = submitter.textContent;
+        const setSubmitterState = (submitter, loading) => {
+          if (!submitter) return;
+          const isInput = submitter.tagName === "INPUT";
+          const label = isInput ? submitter.value : submitter.textContent;
+
+          if (loading) {
+            submitter.dataset.originalLabel = label;
+            if (isInput) {
+              submitter.value = "...";
+            } else {
               submitter.textContent = "...";
-              submitter.disabled = true;
-              submitter.classList.add("opacity-60", "cursor-not-allowed");
             }
-
-            form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
-              link.classList.add("pointer-events-none", "opacity-60", "cursor-not-allowed");
-              link.setAttribute("aria-disabled", "true");
-            });
-          });
-
-          form.addEventListener("turbo:submit-end", (event) => {
-            const submitter = event.detail?.submitter;
-            if (submitter && submitter.dataset.originalLabel) {
+            submitter.disabled = true;
+            submitter.classList.add("opacity-60", "cursor-not-allowed");
+          } else if (submitter.dataset.originalLabel) {
+            if (isInput) {
+              submitter.value = submitter.dataset.originalLabel;
+            } else {
               submitter.textContent = submitter.dataset.originalLabel;
-              delete submitter.dataset.originalLabel;
-              submitter.disabled = false;
-              submitter.classList.remove("opacity-60", "cursor-not-allowed");
             }
+            delete submitter.dataset.originalLabel;
+            submitter.disabled = false;
+            submitter.classList.remove("opacity-60", "cursor-not-allowed");
+          }
+        };
 
-            form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
-              link.classList.remove("pointer-events-none", "opacity-60", "cursor-not-allowed");
-              link.removeAttribute("aria-disabled");
-            });
+        document.addEventListener("turbo:submit-start", (event) => {
+          const form = event.target;
+          setSubmitterState(event.detail?.submitter, true);
+          form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
+            link.classList.add("pointer-events-none", "opacity-60", "cursor-not-allowed");
+            link.setAttribute("aria-disabled", "true");
+          });
+        });
+
+        document.addEventListener("turbo:submit-end", (event) => {
+          const form = event.target;
+          setSubmitterState(event.detail?.submitter, false);
+          form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
+            link.classList.remove("pointer-events-none", "opacity-60", "cursor-not-allowed");
+            link.removeAttribute("aria-disabled");
           });
         });
       });
