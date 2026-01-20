@@ -333,7 +333,7 @@ select {
   border-radius: 10px;
   border: 1px solid var(--border);
   white-space: normal;
-  max-width: 240px;
+  max-width: 320px;
   text-align: center;
   font-size: 12px;
   text-transform: none;
