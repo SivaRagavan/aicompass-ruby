@@ -4,6 +4,6 @@ module AssessmentsHelper
   end
 
   def assessment_progress_label(assessment)
-    "Progress: #{assessment.progress_percent}% · Status: #{assessment.status}"
+    "Progress: #{assessment.progress_percent}%"
   end
 end
