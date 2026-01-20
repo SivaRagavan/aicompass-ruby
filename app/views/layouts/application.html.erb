@@ -58,7 +58,6 @@
           <% end %>
           <div class="nav-actions">
             <% if current_user %>
-              <%= link_to "Dashboard", dashboard_path, class: "button ghost" %>
               <%= button_to "Sign out", signout_path, method: :delete, class: "button outline", form: { data: { turbo: false } } %>
             <% else %>
               <%= link_to "Sign in", signin_path, class: "button" %>
