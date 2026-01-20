@@ -45,9 +45,6 @@ class InvitesController < ApplicationController
       "name" => params[:exec_name],
       "email" => params[:exec_email]
     }
-    @assessment.company_name = params[:company_name]
-    @assessment.company_industry = params[:company_industry]
-    @assessment.company_size = params[:company_size]
     update_progress(@assessment, 0, 0)
     update_last_step(@assessment, "company")
 
