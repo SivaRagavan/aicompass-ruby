@@ -445,7 +445,6 @@ select {
 .slider-labels span {
   text-align: center;
   background: #fffaf3;
-  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 6px 8px;
 }
@@ -453,6 +452,7 @@ select {
 .range-input {
   width: 100%;
   accent-color: #1f6f5b;
+  padding: 11px calc(100% / 8);
 }
 
 .assessment-grid {
