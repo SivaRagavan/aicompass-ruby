@@ -6,18 +6,23 @@ module ScoreCalculator
     pillar_scores = pillars.map do |pillar|
       metrics = pillar[:metrics].select { |metric| selected_metric_ids.include?(metric[:id]) }
       if metrics.empty?
-        { pillar_id: pillar[:id], pillar_name: pillar[:name], score: 0 }
+        { pillar_id: pillar[:id], pillar_name: pillar[:name], score: 0, selected: false }
       else
         weights = normalize_weights(metrics.map { |metric| metric[:weight].to_f })
         weighted_score = metrics.each_with_index.reduce(0) do |sum, (metric, index)|
           score = score_map.fetch(metric[:id], 0)
           sum + score * weights[index]
         end
-        { pillar_id: pillar[:id], pillar_name: pillar[:name], score: (weighted_score / 5) * 100 }
+        {
+          pillar_id: pillar[:id],
+          pillar_name: pillar[:name],
+          score: (weighted_score / 5) * 100,
+          selected: true
+        }
       end
     end
 
-    selected_pillars = pillar_scores.select { |pillar| pillar[:score] > 0 }
+    selected_pillars = pillar_scores.select { |pillar| pillar[:selected] }
     pillar_weights = normalize_weights(
       selected_pillars.map do |pillar|
         config = pillars.find { |item| item[:id] == pillar[:pillar_id] }
@@ -31,7 +36,7 @@ module ScoreCalculator
 
     {
       composite_score: composite_score,
-      pillar_scores: pillar_scores.select { |pillar| pillar[:score] > 0 },
+      pillar_scores: pillar_scores.select { |pillar| pillar[:selected] },
       maturity_band: band_for_score(composite_score)
     }
   end

@@ -43,6 +43,15 @@
               <span>Questions: <%= metric ? metric[:questions].length : score["responses"].length %></span>
             </div>
           <% end %>
+          <% if pillar_scores.empty? %>
+            <% BenchmarkData.metrics_for_pillar(pillar[:pillar_id]).each do |metric| %>
+              <div class="pillar-metric-row">
+                <span><%= metric[:name] %></span>
+                <span>Score: 0</span>
+                <span>Questions: <%= metric[:questions].length %></span>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>
