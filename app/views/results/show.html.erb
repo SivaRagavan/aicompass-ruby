@@ -9,8 +9,10 @@
       <% score_percent = @summary[:composite_score].to_f.round.clamp(0, 100) %>
       <div class="score-meta">
         <div class="score-title">
-          <span>AICO Score</span>
-          <span class="score-help" data-tooltip="AICO Score summarizes module responses into a 0–100 signal.">?</span>
+          <div>
+            <span>AICO Score</span>
+            <span class="score-subtitle">AI Compass Outlook Score</span>
+          </div>
         </div>
         <strong><%= score_percent %></strong>
       </div>
