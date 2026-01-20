@@ -28,7 +28,8 @@
                 <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
               <div class="company-details">
-                <span>Invite expires <%= assessment.invite_expires_at.to_date.to_s %></span>
+                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
+                <span>Expires <%= assessment.invite_expires_at.to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
               </div>
               <div class="card-footer">
@@ -53,7 +54,8 @@
                 <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
               <div class="company-details">
-                <span>Completed <%= assessment.updated_at.to_date.to_s %></span>
+                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
+                <span>Completed <%= assessment.updated_at.to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_score_label(assessment) %></span>
               </div>
               <div class="card-footer">
@@ -76,7 +78,7 @@
                 <strong class="company-name"><%= assessment.company_name %></strong>
               </div>
               <div class="company-details">
-                <span>Invite expired <%= assessment.invite_expires_at.to_date.to_s %></span>
+                <span>Created <%= assessment.created_at.to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
               </div>
             </div>
