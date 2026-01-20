@@ -295,8 +295,8 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
-  color: var(--muted-foreground);
+  font-size: 16px;
+  color: #374151;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
