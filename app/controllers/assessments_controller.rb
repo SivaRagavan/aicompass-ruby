@@ -7,16 +7,19 @@ class AssessmentsController < ApplicationController
   def active
     @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "active" && !assessment.expired? }
     @status = "active"
+    render :index
   end
 
   def completed
     @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "completed" }
     @status = "completed"
+    render :index
   end
 
   def cancelled
     @assessments = current_user.assessments.recent_first.select { |assessment| assessment.status == "cancelled" || assessment.expired? }
     @status = "cancelled"
+    render :index
   end
 
   def new
