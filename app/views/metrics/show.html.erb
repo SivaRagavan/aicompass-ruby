@@ -51,7 +51,7 @@
       <% end %>
 
       <div class="card-footer">
-        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "View Results" : "Next Metric", class: "button") %>
+        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "Complete Assessment" : "Next Metric", class: "button") %>
         <% if selected_metric_index.positive? %>
           <% previous = @selected_metrics[selected_metric_index - 1] %>
           <%= link_to "Back", assessment_step_path(@assessment.invite_token, previous[:pillar][:id], previous[:metric][:id]), class: "button secondary" %>

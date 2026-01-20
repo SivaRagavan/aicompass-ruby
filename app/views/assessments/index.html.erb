@@ -35,11 +35,7 @@
                 <span><%= assessment_progress_label(assessment) %></span>
               <% end %>
             </div>
-            <% if @status == "completed" %>
-              <div class="card-footer">
-                <%= link_to "Complete Assessment", results_path(assessment.invite_token), class: "button outline small" %>
-              </div>
-            <% elsif @status == "active" %>
+            <% if @status == "active" %>
               <div class="card-footer">
                 <%= link_to "Resume", invite_path(assessment.invite_token), class: "button outline small" %>
                 <button class="button ghost small" type="button" data-copy-link="<%= invite_link(assessment) %>">Copy active link</button>
