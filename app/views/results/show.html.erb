@@ -3,7 +3,6 @@
   <h1>Assessment for <%= company_name %></h1>
   <% assessor_name = @assessment.exec_profile["name"].presence || "Assessor" %>
   <% completed_date = @assessment.updated_at.to_date.strftime("%b %d, %Y") %>
-  <p class="card-subtitle">Completed by <%= assessor_name %> on <%= completed_date %></p>
 
   <div class="stat-grid">
     <div class="score-card">
@@ -56,5 +55,5 @@
     <% end %>
   </div>
 
-
+  <p class="card-subtitle">Completed by <%= assessor_name %> on <%= completed_date %></p>
 </div>
