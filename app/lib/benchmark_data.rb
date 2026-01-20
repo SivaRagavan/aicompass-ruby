@@ -4,7 +4,7 @@ module BenchmarkData
   QUALIFY_QUESTIONS = [
     {
       id: "ai-maturity",
-      prompt: "Rate from Not yet to Leading: how would you describe your AI adoption stage?",
+      prompt: "How mature is your AI adoption stage?",
       helper: "This helps prioritize internal adoption and data readiness questions.",
       options: [
         {
@@ -26,7 +26,7 @@ module BenchmarkData
     },
     {
       id: "data-sensitivity",
-      prompt: "Rate from Not yet to Leading: how sensitive is the data your teams use with AI?",
+      prompt: "How sensitive is the data your teams use with AI?",
       helper: "Higher sensitivity increases governance and shadow AI importance.",
       options: [
         {
@@ -48,7 +48,7 @@ module BenchmarkData
     },
     {
       id: "product-ai",
-      prompt: "Rate from Not yet to Leading: is AI part of your customer-facing product roadmap?",
+      prompt: "How established is AI in your customer-facing product roadmap?",
       helper: "Determines whether product strategy and revenue impact apply.",
       options: [
         {
@@ -70,7 +70,7 @@ module BenchmarkData
     },
     {
       id: "workforce",
-      prompt: "Rate from Not yet to Leading: what best describes your AI talent posture?",
+      prompt: "How mature is your AI talent posture?",
       helper: "Used to focus on AI talent and leadership alignment.",
       options: [
         {
@@ -106,9 +106,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "coverage-1", prompt: "Rate from Not yet to Leading: how many core workflows use AI assistance?" },
-            { id: "coverage-2", prompt: "Rate from Not yet to Leading: how many teams rely on AI for daily work?" },
-            { id: "coverage-3", prompt: "Rate from Not yet to Leading: how standardized are AI-enabled workflows?" }
+            { id: "coverage-1", prompt: "How mature is AI coverage across core workflows?" },
+            { id: "coverage-2", prompt: "How widespread is day-to-day AI use across teams?" },
+            { id: "coverage-3", prompt: "How standardized are AI-enabled workflows today?" }
           ]
         },
         {
@@ -118,11 +118,11 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "depth-1", prompt: "Rate from Not yet to Leading: how advanced are AI use cases in production?" },
-            { id: "depth-2", prompt: "Rate from Not yet to Leading: how integrated is AI into decision-making?" },
+            { id: "depth-1", prompt: "How advanced are AI use cases in production?" },
+            { id: "depth-2", prompt: "How integrated is AI into decision-making?" },
             {
               id: "depth-3",
-              prompt: "Rate from Not yet to Leading: how often are AI outputs trusted without manual workarounds?"
+              prompt: "How consistently are AI outputs trusted without manual workarounds?"
             }
           ]
         },
@@ -133,9 +133,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "enablement-1", prompt: "Rate from Not yet to Leading: how formalized is AI training across roles?" },
-            { id: "enablement-2", prompt: "Rate from Not yet to Leading: how well-supported are internal AI champions?" },
-            { id: "enablement-3", prompt: "Rate from Not yet to Leading: how accessible are AI playbooks and guidelines?" }
+            { id: "enablement-1", prompt: "How formalized is AI training across roles?" },
+            { id: "enablement-2", prompt: "How well-supported are internal AI champions?" },
+            { id: "enablement-3", prompt: "How accessible are AI playbooks and guidelines?" }
           ]
         }
       ]
@@ -153,9 +153,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "visibility-1", prompt: "Rate from Not yet to Leading: how well do you track AI tool usage?" },
-            { id: "visibility-2", prompt: "Rate from Not yet to Leading: how complete is your inventory of AI vendors?" },
-            { id: "visibility-3", prompt: "Rate from Not yet to Leading: how frequently is usage data reviewed?" }
+            { id: "visibility-1", prompt: "How mature is your tracking of AI tool usage?" },
+            { id: "visibility-2", prompt: "How complete is your inventory of AI vendors?" },
+            { id: "visibility-3", prompt: "How routinely is AI usage data reviewed?" }
           ]
         },
         {
@@ -165,9 +165,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "policy-1", prompt: "Rate from Not yet to Leading: how clearly are AI policies communicated?" },
-            { id: "policy-2", prompt: "Rate from Not yet to Leading: how consistently are AI policies enforced?" },
-            { id: "policy-3", prompt: "Rate from Not yet to Leading: how effective are guardrails for approved tools?" }
+            { id: "policy-1", prompt: "How clearly are AI policies communicated?" },
+            { id: "policy-2", prompt: "How consistently are AI policies enforced?" },
+            { id: "policy-3", prompt: "How effective are guardrails for approved tools?" }
           ]
         },
         {
@@ -177,9 +177,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "risk-1", prompt: "Rate from Not yet to Leading: how strong are controls to prevent data leakage?" },
-            { id: "risk-2", prompt: "Rate from Not yet to Leading: how well are high-risk prompts detected?" },
-            { id: "risk-3", prompt: "Rate from Not yet to Leading: how quickly are shadow AI incidents handled?" }
+            { id: "risk-1", prompt: "How strong are controls to prevent data leakage?" },
+            { id: "risk-2", prompt: "How effectively are high-risk prompts detected?" },
+            { id: "risk-3", prompt: "How quickly are shadow AI incidents handled?" }
           ]
         }
       ]
@@ -197,9 +197,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "skill-1", prompt: "Rate from Not yet to Leading: how many roles have defined AI skill baselines?" },
-            { id: "skill-2", prompt: "Rate from Not yet to Leading: how quickly can teams learn new AI tools?" },
-            { id: "skill-3", prompt: "Rate from Not yet to Leading: how embedded are AI skills in hiring criteria?" }
+            { id: "skill-1", prompt: "How mature are defined AI skill baselines across roles?" },
+            { id: "skill-2", prompt: "How quickly can teams ramp on new AI tools?" },
+            { id: "skill-3", prompt: "How embedded are AI skills in hiring criteria?" }
           ]
         },
         {
@@ -209,9 +209,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "specialist-1", prompt: "Rate from Not yet to Leading: how deep is the AI/ML specialist bench?" },
-            { id: "specialist-2", prompt: "Rate from Not yet to Leading: how well-staffed are AI platform teams?" },
-            { id: "specialist-3", prompt: "Rate from Not yet to Leading: how sustainable is AI hiring pipeline?" }
+            { id: "specialist-1", prompt: "How deep is the AI/ML specialist bench?" },
+            { id: "specialist-2", prompt: "How well-staffed are AI platform teams?" },
+            { id: "specialist-3", prompt: "How sustainable is the AI hiring pipeline?" }
           ]
         },
         {
@@ -221,9 +221,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "career-1", prompt: "Rate from Not yet to Leading: how clear are AI career paths and progression?" },
-            { id: "career-2", prompt: "Rate from Not yet to Leading: how competitive are AI compensation bands?" },
-            { id: "career-3", prompt: "Rate from Not yet to Leading: how strong are retention programs for AI talent?" }
+            { id: "career-1", prompt: "How clear are AI career paths and progression?" },
+            { id: "career-2", prompt: "How competitive are AI compensation bands?" },
+            { id: "career-3", prompt: "How strong are retention programs for AI talent?" }
           ]
         }
       ]
@@ -241,9 +241,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "leadership-1", prompt: "Rate from Not yet to Leading: how visible is executive sponsorship of AI?" },
-            { id: "leadership-2", prompt: "Rate from Not yet to Leading: how aligned are leaders on AI priorities?" },
-            { id: "leadership-3", prompt: "Rate from Not yet to Leading: how consistent is executive communication on AI?" }
+            { id: "leadership-1", prompt: "How visible is executive sponsorship of AI?" },
+            { id: "leadership-2", prompt: "How aligned are leaders on AI priorities?" },
+            { id: "leadership-3", prompt: "How consistent is executive communication on AI?" }
           ]
         },
         {
@@ -253,9 +253,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "portfolio-1", prompt: "Rate from Not yet to Leading: how disciplined is AI investment prioritization?" },
-            { id: "portfolio-2", prompt: "Rate from Not yet to Leading: how clear are AI business cases?" },
-            { id: "portfolio-3", prompt: "Rate from Not yet to Leading: how consistently are AI initiatives funded?" }
+            { id: "portfolio-1", prompt: "How disciplined is AI investment prioritization?" },
+            { id: "portfolio-2", prompt: "How clear are AI business cases?" },
+            { id: "portfolio-3", prompt: "How consistently are AI initiatives funded?" }
           ]
         },
         {
@@ -265,9 +265,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "governance-1", prompt: "Rate from Not yet to Leading: how clear are AI governance roles?" },
-            { id: "governance-2", prompt: "Rate from Not yet to Leading: how effective is AI decision-making cadence?" },
-            { id: "governance-3", prompt: "Rate from Not yet to Leading: how strong is accountability for AI outcomes?" }
+            { id: "governance-1", prompt: "How clear are AI governance roles?" },
+            { id: "governance-2", prompt: "How effective is AI decision-making cadence?" },
+            { id: "governance-3", prompt: "How strong is accountability for AI outcomes?" }
           ]
         }
       ]
@@ -285,9 +285,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "data-quality-1", prompt: "Rate from Not yet to Leading: how reliable is data quality for AI use cases?" },
-            { id: "data-quality-2", prompt: "Rate from Not yet to Leading: how complete are key datasets?" },
-            { id: "data-quality-3", prompt: "Rate from Not yet to Leading: how automated are data quality checks?" }
+            { id: "data-quality-1", prompt: "How reliable is data quality for AI use cases?" },
+            { id: "data-quality-2", prompt: "How complete are key datasets?" },
+            { id: "data-quality-3", prompt: "How automated are data quality checks?" }
           ]
         },
         {
@@ -297,9 +297,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "data-access-1", prompt: "Rate from Not yet to Leading: how easy is it to access data for AI work?" },
-            { id: "data-access-2", prompt: "Rate from Not yet to Leading: how mature is data governance for sharing?" },
-            { id: "data-access-3", prompt: "Rate from Not yet to Leading: how self-serve is data discovery?" }
+            { id: "data-access-1", prompt: "How easy is it to access data for AI work?" },
+            { id: "data-access-2", prompt: "How mature is data governance for sharing?" },
+            { id: "data-access-3", prompt: "How self-serve is data discovery?" }
           ]
         },
         {
@@ -309,9 +309,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "mlops-1", prompt: "Rate from Not yet to Leading: how production-ready are AI pipelines?" },
-            { id: "mlops-2", prompt: "Rate from Not yet to Leading: how standardized are model deployment practices?" },
-            { id: "mlops-3", prompt: "Rate from Not yet to Leading: how strong is monitoring of AI systems?" }
+            { id: "mlops-1", prompt: "How production-ready are AI pipelines?" },
+            { id: "mlops-2", prompt: "How standardized are model deployment practices?" },
+            { id: "mlops-3", prompt: "How strong is monitoring of AI systems?" }
           ]
         }
       ]
@@ -329,9 +329,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "roadmap-1", prompt: "Rate from Not yet to Leading: how clear is the AI product roadmap?" },
-            { id: "roadmap-2", prompt: "Rate from Not yet to Leading: how well does AI align with product strategy?" },
-            { id: "roadmap-3", prompt: "Rate from Not yet to Leading: how frequently is the AI roadmap reviewed?" }
+            { id: "roadmap-1", prompt: "How clear is the AI product roadmap?" },
+            { id: "roadmap-2", prompt: "How well does AI align with product strategy?" },
+            { id: "roadmap-3", prompt: "How frequently is the AI roadmap reviewed?" }
           ]
         },
         {
@@ -341,9 +341,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "diff-1", prompt: "Rate from Not yet to Leading: how differentiated are AI features in market?" },
-            { id: "diff-2", prompt: "Rate from Not yet to Leading: how defensible are AI capabilities?" },
-            { id: "diff-3", prompt: "Rate from Not yet to Leading: how measurable is AI-driven advantage?" }
+            { id: "diff-1", prompt: "How differentiated are AI features in market?" },
+            { id: "diff-2", prompt: "How defensible are AI capabilities?" },
+            { id: "diff-3", prompt: "How measurable is AI-driven advantage?" }
           ]
         },
         {
@@ -353,12 +353,12 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "feedback-1", prompt: "Rate from Not yet to Leading: how systematic is AI feedback collection?" },
+            { id: "feedback-1", prompt: "How systematic is AI feedback collection?" },
             {
               id: "feedback-2",
-              prompt: "Rate from Not yet to Leading: how quickly are AI insights turned into improvements?"
+              prompt: "How quickly are AI insights turned into improvements?"
             },
-            { id: "feedback-3", prompt: "Rate from Not yet to Leading: how well are AI outcomes communicated to customers?" }
+            { id: "feedback-3", prompt: "How well are AI outcomes communicated to customers?" }
           ]
         }
       ]
@@ -376,9 +376,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "value-1", prompt: "Rate from Not yet to Leading: how well is AI value tracked and reported?" },
-            { id: "value-2", prompt: "Rate from Not yet to Leading: how repeatable is AI value measurement?" },
-            { id: "value-3", prompt: "Rate from Not yet to Leading: how strong are ROI baselines for AI?" }
+            { id: "value-1", prompt: "How well is AI value tracked and reported?" },
+            { id: "value-2", prompt: "How repeatable is AI value measurement?" },
+            { id: "value-3", prompt: "How strong are ROI baselines for AI?" }
           ]
         },
         {
@@ -388,9 +388,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "revenue-1", prompt: "Rate from Not yet to Leading: how meaningful is AI-driven revenue today?" },
-            { id: "revenue-2", prompt: "Rate from Not yet to Leading: how clear are AI monetization paths?" },
-            { id: "revenue-3", prompt: "Rate from Not yet to Leading: how consistent is AI revenue forecasting?" }
+            { id: "revenue-1", prompt: "How meaningful is AI-driven revenue today?" },
+            { id: "revenue-2", prompt: "How clear are AI monetization paths?" },
+            { id: "revenue-3", prompt: "How consistent is AI revenue forecasting?" }
           ]
         },
         {
@@ -400,9 +400,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "prod-1", prompt: "Rate from Not yet to Leading: how measured are AI productivity gains?" },
-            { id: "prod-2", prompt: "Rate from Not yet to Leading: how widely realized are efficiency improvements?" },
-            { id: "prod-3", prompt: "Rate from Not yet to Leading: how sustained are AI efficiency gains over time?" }
+            { id: "prod-1", prompt: "How measured are AI productivity gains?" },
+            { id: "prod-2", prompt: "How widely realized are efficiency improvements?" },
+            { id: "prod-3", prompt: "How sustained are AI efficiency gains over time?" }
           ]
         }
       ]
@@ -420,9 +420,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "resp-1", prompt: "Rate from Not yet to Leading: how well are bias risks assessed in AI systems?" },
-            { id: "resp-2", prompt: "Rate from Not yet to Leading: how transparent are AI models and decisions?" },
-            { id: "resp-3", prompt: "Rate from Not yet to Leading: how robust are responsible AI reviews?" }
+            { id: "resp-1", prompt: "How well are bias risks assessed in AI systems?" },
+            { id: "resp-2", prompt: "How transparent are AI models and decisions?" },
+            { id: "resp-3", prompt: "How robust are responsible AI reviews?" }
           ]
         },
         {
@@ -432,9 +432,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "sec-1", prompt: "Rate from Not yet to Leading: how mature are AI security controls?" },
-            { id: "sec-2", prompt: "Rate from Not yet to Leading: how continuous is AI threat monitoring?" },
-            { id: "sec-3", prompt: "Rate from Not yet to Leading: how tested are AI incident response plans?" }
+            { id: "sec-1", prompt: "How mature are AI security controls?" },
+            { id: "sec-2", prompt: "How continuous is AI threat monitoring?" },
+            { id: "sec-3", prompt: "How tested are AI incident response plans?" }
           ]
         },
         {
@@ -444,9 +444,9 @@ module BenchmarkData
           weight: 1,
           labels: DEFAULT_LABELS,
           questions: [
-            { id: "comp-1", prompt: "Rate from Not yet to Leading: how prepared are you for AI regulations?" },
-            { id: "comp-2", prompt: "Rate from Not yet to Leading: how audit-ready are AI systems?" },
-            { id: "comp-3", prompt: "Rate from Not yet to Leading: how routinely are compliance gaps reviewed?" }
+            { id: "comp-1", prompt: "How prepared are you for AI regulations?" },
+            { id: "comp-2", prompt: "How audit-ready are AI systems?" },
+            { id: "comp-3", prompt: "How routinely are compliance gaps reviewed?" }
           ]
         }
       ]
