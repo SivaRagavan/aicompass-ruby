@@ -24,7 +24,7 @@
       <div class="pillar-bar" data-pillar>
         <button class="pillar-label" type="button" data-pillar-toggle>
           <span><%= pillar[:pillar_name] %></span>
-          <strong><%= format("%.1f", pillar[:score]) %></strong>
+          <strong><%= format("%.0f", pillar[:score].to_f * 20) %></strong>
         </button>
         <div class="pillar-track">
           <span style="width: <%= pillar[:score].to_f.round %>%"></span>
@@ -34,7 +34,7 @@
             <% metric = BenchmarkData.pillar_by_id(score["pillar_id"])&.[](:metrics)&.find { |item| item[:id] == score["metric_id"] } %>
             <div class="pillar-metric-row">
               <span><%= metric ? metric[:name] : score["metric_id"] %></span>
-              <span><%= format("%.1f", score["score"].to_f) %></span>
+              <span><%= format("%.0f", score["score"].to_f * 20) %></span>
               <span><%= metric ? metric[:questions].length : score["responses"].length %> questions</span>
             </div>
           <% end %>
