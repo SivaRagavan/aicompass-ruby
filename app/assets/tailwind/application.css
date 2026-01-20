@@ -34,7 +34,11 @@
     text-decoration: none;
   }
 
-  button {
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  [role="button"] {
     @apply cursor-pointer;
   }
 }
