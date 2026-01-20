@@ -241,6 +241,8 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
 .stat-card {
