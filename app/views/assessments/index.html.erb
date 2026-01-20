@@ -20,7 +20,7 @@
         <% @assessments.each do |assessment| %>
           <div class="card">
             <div class="company-header">
-              <%= link_to assessment.company_name, invite_path(assessment.invite_token), class: "company-name" %>
+              <span class="company-name"><%= assessment.company_name %></span>
             </div>
 
 
