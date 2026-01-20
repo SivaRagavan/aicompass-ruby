@@ -30,7 +30,7 @@
           <span><%= pillar[:pillar_name] %></span>
           <strong><%= format("%.0f", pillar_percent) %></strong>
         </button>
-        <div class="pillar-track">
+        <div class="pillar-track" data-pillar-toggle>
           <span style="width: <%= [pillar_percent.round, 100].min %>%"></span>
         </div>
         <div class="pillar-metrics" data-pillar-metrics>
