@@ -73,22 +73,35 @@
           }
         };
 
+        const disableFormLinks = (form, disabled) => {
+          form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
+            if (disabled) {
+              link.classList.add("pointer-events-none", "opacity-60", "cursor-not-allowed");
+              link.setAttribute("aria-disabled", "true");
+            } else {
+              link.classList.remove("pointer-events-none", "opacity-60", "cursor-not-allowed");
+              link.removeAttribute("aria-disabled");
+            }
+          });
+        };
+
+        document.addEventListener("submit", (event) => {
+          const form = event.target;
+          const submitter = event.submitter || form.querySelector("button[type=submit],input[type=submit]");
+          setSubmitterState(submitter, true);
+          disableFormLinks(form, true);
+        });
+
         document.addEventListener("turbo:submit-start", (event) => {
           const form = event.target;
           setSubmitterState(event.detail?.submitter, true);
-          form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
-            link.classList.add("pointer-events-none", "opacity-60", "cursor-not-allowed");
-            link.setAttribute("aria-disabled", "true");
-          });
+          disableFormLinks(form, true);
         });
 
         document.addEventListener("turbo:submit-end", (event) => {
           const form = event.target;
           setSubmitterState(event.detail?.submitter, false);
-          form.querySelectorAll("[data-disable-on-submit]").forEach((link) => {
-            link.classList.remove("pointer-events-none", "opacity-60", "cursor-not-allowed");
-            link.removeAttribute("aria-disabled");
-          });
+          disableFormLinks(form, false);
         });
       });
     </script>
