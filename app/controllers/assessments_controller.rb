@@ -34,12 +34,13 @@ class AssessmentsController < ApplicationController
     assessment.progress_data = {}
 
     if assessment.save
+      update_last_step(assessment, "invite")
+      assessment.save
+
       if params[:start_now] == "1"
-        update_last_step(assessment, "invite")
-        assessment.save
         redirect_to invite_path(assessment.invite_token)
       else
-        redirect_to dashboard_path
+        redirect_to invite_path(assessment.invite_token)
       end
     else
       @assessment = assessment
