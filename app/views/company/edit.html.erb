@@ -1,11 +1,23 @@
 <div class="card">
-  <h1>Company</h1>
-  <p class="card-subtitle">Enter a company name to get started.</p>
+  <h1>Company Details</h1>
+  <p class="card-subtitle">Confirm the company information before moving into the assessment.</p>
 
   <%= form_with url: company_path(@assessment.invite_token), method: :patch, class: "form-grid" do %>
     <div class="input-group">
       <%= label_tag :company_name, "Company Name" %>
       <%= text_field_tag :company_name, @assessment.company_name %>
+    </div>
+    <div class="input-group">
+      <%= label_tag :company_industry, "Industry" %>
+      <%= select_tag :company_industry, options_for_select(IndustryData::LIST, @assessment.company_industry), include_blank: "Select an industry" %>
+    </div>
+    <div class="input-group">
+      <%= label_tag :company_size, "Company Size" %>
+      <%= select_tag :company_size, options_for_select([
+        ["Startup (1-100)", "startup"],
+        ["Mid-market (100-1000)", "mid"],
+        ["Enterprise (1000+)", "enterprise"]
+      ], @assessment.company_size), include_blank: "Select" %>
     </div>
     <div class="card-footer">
       <%= submit_tag "Continue", class: "button" %>
