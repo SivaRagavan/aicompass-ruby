@@ -38,10 +38,11 @@
 
         document.querySelectorAll("[data-pillar]").forEach((pill) => {
           const toggles = pill.querySelectorAll("[data-pillar-toggle]");
-          if (!toggles.length) return;
+          const details = pill.querySelector("[data-pillar-metrics]");
+          if (!toggles.length || !details) return;
           toggles.forEach((toggle) => {
             toggle.addEventListener("click", () => {
-              pill.classList.toggle("is-open");
+              details.classList.toggle("hidden");
             });
           });
         });

@@ -8,9 +8,9 @@
 
   <div class="grid gap-5">
     <div class="inline-flex gap-2 rounded-full bg-[#efe6d8] px-1.5 py-1.5">
-      <%= link_to "Active", dashboard_path(status: "active"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'active'}" %>
-      <%= link_to "Completed", dashboard_path(status: "completed"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'completed'}" %>
-      <%= link_to "Cancelled", dashboard_path(status: "cancelled"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-[#fffaf3]' if @status == 'cancelled'}" %>
+      <%= link_to "Active", dashboard_path(status: "active"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-white' if @status == 'active'}" %>
+      <%= link_to "Completed", dashboard_path(status: "completed"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-white' if @status == 'completed'}" %>
+      <%= link_to "Cancelled", dashboard_path(status: "cancelled"), class: "rounded-full bg-transparent px-4 py-2 font-semibold text-[#6b7280] #{'shadow-md text-[var(--primary)] bg-white' if @status == 'cancelled'}" %>
     </div>
 
     <% if @assessments.empty? %>

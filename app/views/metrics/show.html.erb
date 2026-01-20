@@ -51,7 +51,7 @@
       <% end %>
 
       <div class="mt-6 flex flex-wrap gap-3">
-        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "Complete Assessment" : "Next Metric", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]") %>
+        <%= submit_tag(selected_metric_index + 1 == @selected_metrics.length ? "Complete Assessment" : "Next", class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 font-semibold text-[var(--primary-foreground)] shadow-[0_12px_24px_rgba(31,111,91,0.18)]") %>
         <% if selected_metric_index.positive? %>
           <% previous = @selected_metrics[selected_metric_index - 1] %>
           <%= link_to "Back", assessment_step_path(@assessment.invite_token, previous[:pillar][:id], previous[:metric][:id]), class: "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-[var(--primary)]" %>
