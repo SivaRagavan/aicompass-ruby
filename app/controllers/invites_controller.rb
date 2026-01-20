@@ -43,7 +43,6 @@ class InvitesController < ApplicationController
 
     @assessment.exec_profile = {
       "name" => params[:exec_name],
-      "title" => params[:exec_title],
       "email" => params[:exec_email]
     }
     @assessment.company_name = params[:company_name]
