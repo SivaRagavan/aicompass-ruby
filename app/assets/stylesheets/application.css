@@ -299,6 +299,7 @@ select {
   color: #374151;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 .score-help {
