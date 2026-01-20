@@ -31,6 +31,7 @@
                 <span>Expires <%= assessment.invite_expires_at.to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
               <% else %>
+                <span>Cancelled <%= (assessment.cancelled_at || assessment.updated_at).to_date.strftime("%b %d, %Y") %></span>
                 <span><%= assessment_progress_label(assessment) %></span>
               <% end %>
             </div>

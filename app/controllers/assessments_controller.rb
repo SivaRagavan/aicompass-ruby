@@ -51,6 +51,9 @@ class AssessmentsController < ApplicationController
   def update
     assessment = current_user.assessments.find(params[:id])
     assessment.assign_attributes(update_params)
+    if params[:status] == "cancelled"
+      assessment.cancelled_at = Time.current
+    end
     if params[:invite_days].present?
       assessment.invite_expires_at = Time.current + params[:invite_days].to_i.days
     end
