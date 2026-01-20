@@ -1,7 +1,8 @@
 <div class="card">
-  <h1><%= @assessment.company_name.presence || "Assessment Results" %></h1>
+  <% company_name = @assessment.company_name.presence || "your company" %>
+  <h1>Assessment for <%= company_name %></h1>
   <% assessor_name = @assessment.exec_profile["name"].presence || "Assessor" %>
-  <p class="card-subtitle"><%= assessor_name %></p>
+  <p class="card-subtitle">by <%= assessor_name %></p>
 
   <div class="stat-grid">
     <div class="stat-card">
