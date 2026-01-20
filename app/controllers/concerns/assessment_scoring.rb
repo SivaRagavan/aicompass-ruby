@@ -14,7 +14,7 @@ module AssessmentScoring
     assessment.progress_data = {
       "completed_metrics" => completed_metrics,
       "total_metrics" => total_metrics,
-      "percent" => [percent, 100].min,
+      "percent" => [ percent, 100 ].min,
       "updated_at" => Time.current.iso8601
     }
   end
@@ -40,10 +40,27 @@ module AssessmentScoring
     when "results"
       results_path(token: assessment.invite_token)
     when /^assessment:/
-      _, pillar_id, metric_id = step.split(":", 3)
-      assessment_step_path(token: assessment.invite_token, pillar_id: pillar_id, metric_id: metric_id)
+      next_entry = next_incomplete_metric(assessment)
+      return results_path(token: assessment.invite_token) unless next_entry
+
+      assessment_step_path(
+        token: assessment.invite_token,
+        pillar_id: next_entry[:pillar][:id],
+        metric_id: next_entry[:metric][:id]
+      )
     else
       invite_path(assessment.invite_token)
     end
+  end
+
+  def next_incomplete_metric(assessment)
+    selected_metrics = BenchmarkData.selected_metrics(assessment.selections)
+    return if selected_metrics.empty?
+
+    completed_ids = assessment.scores
+      .select { |score| score["completed"] }
+      .map { |score| score["metric_id"] }
+
+    selected_metrics.find { |entry| !completed_ids.include?(entry[:metric][:id]) }
   end
 end
