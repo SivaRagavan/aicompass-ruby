@@ -1,13 +1,13 @@
 # AI Compass Ruby
 
-AI Compass Ruby is a Ruby on Rails rewrite of the AI Compass assessment platform. It keeps the private-equity company workflow intact while moving the stack to Rails + Postgres.
+AI Compass Ruby is a Ruby on Rails rewrite of the AI Compass assessment platform.
 
-## Features
+## Prerequisites
 
-- PE firm sign-in with email + password
-- Company assessment creation with expiring invite links
-- Executive assessment flow with autosave progress tracking
-- Progress tracking and results summary
+- Ruby 4.0.1 (see `.ruby-version`)
+- Bundler
+- PostgreSQL 9.3+
+- systemd user services (only for `script/*.sh` service management)
 
 ## Local Development
 
