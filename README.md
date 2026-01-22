@@ -19,6 +19,17 @@ bin/rails server
 
 Visit `http://localhost:3000` to access the app.
 
+## Service Management (systemd user)
+
+```bash
+script/install.sh
+script/start.sh
+script/stop.sh
+script/uninstall.sh
+```
+
+The service runs as `aicompass-ruby.service` and listens on port 8004. To start on boot without logging in, run `loginctl enable-linger $USER` once.
+
 ## Project Structure
 
 - `app/controllers` — UI flows for auth, dashboard, and assessment steps
